@@ -2411,7 +2411,8 @@ blockquote {
 		color: #fff;
 		cursor: pointer;
 		display: inline-block;
-		padding: 0 1.5em;
+		padding: 0, 1.5em;
+		margin: .1em;
 		line-height: 2.75em;
 		min-width: 9em;
 		text-align: center;
@@ -3451,3 +3452,37 @@ tr:hover {
 	background-color: #ddd;
 }
 
+/* Style for the file input container */
+.file-input-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/* Style for the file input button */
+.file-input-button {
+    background-color: #37c0fb;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for the file input */
+.file-input {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+/* Style for the selected file name */
+.file-input-text {
+    margin-left: 10px;
+}
+.button-footer{
+	background-color: rgb(127, 183, 127);
+}
