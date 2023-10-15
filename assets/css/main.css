@@ -3394,3 +3394,60 @@ blockquote {
 	background: #37c0fb; /* Green background */
 	cursor: pointer; /* Cursor on hover */
 }
+
+/* Style for the label text next to the checkboxes */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style for the checkboxes */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Style for the custom checkbox design */
+input[type="checkbox"] + label:before {
+    content: ""; /* No content to hide the checkmark symbol */
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+/* Style for checked checkboxes */
+input[type="checkbox"]:checked + label:before {
+    content: "\2713"; /* Checkmark symbol displayed when checked */
+    background-color: #3498db;
+    color: #fff;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #ddd;
+}
+
