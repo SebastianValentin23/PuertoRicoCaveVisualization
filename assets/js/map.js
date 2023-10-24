@@ -10,8 +10,9 @@ function start() {
         //for now we just use an array to iterate through if statements to simulate the process
         //the method will return the pair of corrds that the town belongs to.
         context.fillStyle = "#FF0000";
+
         
-    
+        
         for (let i = 0; i < towns.length; i++) {
             if (towns[i] == "Arecibo") {
                 context.beginPath();

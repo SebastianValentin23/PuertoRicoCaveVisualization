@@ -13,167 +13,148 @@
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
-
-			<!-- Header -->
-				<div id="header">
-					<!-- Nav -->
-						<nav id="nav">
-							<nav id="nav">
-								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li class="current"><a href="search-cave.html">Caves</a></li>
-									<li><a href="">Map</a></li>
-									<li><a href="cueva-template.html">Random Cave</a></li>
-									<li><a href="">About Us</a></li>
-									<li><a href="admin-caves.html">Admin</a></li>
-									<li><a href="cave-creation.html">Cave Creation</a></li>
-									<li><a href="login-admin.html">Login</a></li>
-
-								</ul>
-							</nav>
-						</nav>
-				</div>
-
+			<div id="header">
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li class="current"><a href="search-cave.html">Caves</a></li>
+						<li><a href="map.html">Map</a></li>
+						<li><a href="cueva-template.html">Random Cave</a></li>
+						<li><a href="">About Us</a></li>
+						<li><a href="admin-caves.html">Admin</a></li>
+						<li><a href="cave-creation.html">Cave Creation</a></li>
+						<li><a href="login-admin.html">Login</a></li>
+					</ul>
+				</nav>
+			</div>
 			<!-- Main -->
-				<section class="wrapper style1">
-					<div class="container">
-						<div class="row gtr-200">
-							<div class="col-4 col-12-narrower">
-								<div id="sidebar">
-
-									<!-- Sidebar -->
-
-										<section>
-											<h3>Cave Search</h3>
-											<form id="caveForm">
-												<label for="caveName">Search by Name:</label>
-												<input type="text" id="caveName" name="caveName">
-												<br>
+			<section class="wrapper style1">
+				<div class="container">
+					<div class="row gtr-200">
+						<div class="col-4 col-12-narrower">
+							<div id="sidebar">
+								<section>
+									<h3>Cave Search</h3>
+									<form id="caveForm">
+										<label for="caveName">Search by Name:</label>
+										<input type="text" id="caveName" name="caveName">
+										<br>
+							
+										<label for="town">Town:</label>
+										<select id="town" name="town">
+											<option value="">Select a Town</option>
+											<option value="Town A">Camuy</option>
+											<option value="Town B">Arecibo</option>
+											<option value="Town C">Ponce</option>
+										</select>
+										<br>
 												
-												<label for="town">Town:</label>
-												<select id="town" name="town">
-													<option value="">Select a Town</option>
-													<option value="Town A">Town A</option>
-													<option value="Town B">Town B</option>
-													<option value="Town C">Town C</option>
-													<option value="Town D">Town D</option>
-													<option value="Town E">Town E</option>
-												</select>
-												<br>
-												
-												<label>Fauna:</label>
-												<input type="checkbox" id="bats" name="fauna" value="bats">
-												<label for="bats">Bats</label>
-												<input type="checkbox" id="salamanders" name="fauna" value="salamanders">
-												<label for="salamanders">Salamanders</label>
-												<input type="checkbox" id="crickets" name="fauna" value="crickets">
-												<label for="crickets">Crickets</label>
-												<!-- Add more fauna checkboxes as needed -->
-												<br>
+										<label>Fauna:</label>
+										<input type="checkbox" id="bats" name="fauna" value="bats">
+										<label for="bats">Bats</label>
+										<input type="checkbox" id="salamanders" name="fauna" value="salamanders">
+										<label for="salamanders">Salamanders</label>
+										<input type="checkbox" id="crickets" name="fauna" value="crickets">
+										<label for="crickets">Crickets</label>
+										<!-- Add more fauna checkboxes as needed -->
+										<br>
 										
-												<label>Flora:</label>
-												<input type="checkbox" id="stalagmites" name="flora" value="stalagmites">
-												<label for="stalagmites">Stalagmites</label>
-												<input type="checkbox" id="moss" name="flora" value="moss">
-												<label for="moss">Moss</label>
-												<input type="checkbox" id="algae" name="flora" value="algae">
-												<label for="algae">Algae</label>
-												<!-- Add more flora checkboxes as needed -->
-												<br>
-												<footer>
-												<input type="submit" value="Search">
-												</footer>
-											</form>
-										</section>
-
-
-								</div>
+										<label>Flora:</label>
+										<input type="checkbox" id="stalagmites" name="flora" value="stalagmites">
+										<label for="stalagmites">Stalagmites</label>
+										<input type="checkbox" id="moss" name="flora" value="moss">
+										<label for="moss">Moss</label>
+										<input type="checkbox" id="algae" name="flora" value="algae">
+										<label for="algae">Algae</label>
+										<!-- Add more flora checkboxes as needed -->
+										<br>
+										
+										<footer>
+											<input type="submit" value="Search">
+										</footer>
+									</form>
+								</section>
 							</div>
-							<div class="col-8  col-12-narrower imp-narrower">
-								<div id="content">
+						</div>
+					
+						<div class="col-8  col-12-narrower imp-narrower">
+							<div id="content">
+								<article>
+									<header>
+										<h2>Cave List</h2>
+									</header>
 
-									<!-- Content -->
-
-										<article>
-											<header>
-												<h2>Cave Table</h2>
-												<p>Here you can see the caves in the system</p>
-											</header>
-
-											<table>
-												<tr>
-													<th>Cave Name</th>
-													<th>Town</th>
-													<th>Cave Fauna</th>
-													<th>Cave Flora</th>
-													<th>Cave Size (3D Model)</th>
-													<th>Date Created</th>
-												</tr>
-												<tr>
-													<td><a href="cueva-template.html">Mystic Cave</a></td>
-													<td>Town A</td>
-													<td>Bats, Salamanders</td>
-													<td>Stalagmites, Moss</td>
-													<td>Large</td>
-													<td>2023-10-12</td>
-												</tr>
-												<tr>
-													<td><a href="cueva-template.html">Crystal Cave</a></td>
-													<td>Town B</td>
-													<td>Crabs</td>
-													<td>Stalactites, Algae</td>
-													<td>Medium</td>
-													<td>2023-09-25</td>
-												</tr>
-												<tr>
-													<td><a href="cueva-template.html">Echo Cave</a></td>
-													<td>Town C</td>
-													<td>Bats, Crickets</td>
-													<td>Moss</td>
-													<td>Small</td>
-													<td>2023-08-17</td>
-												</tr>
-												<tr>
-													<td><a href="cueva-template.html">Glowing Grotto</a></td>
-													<td>Town D</td>
-													<td>Frogs</td>
-													<td>Stalactites, Algae</td>
-													<td>Large</td>
-													<td>2023-07-05</td>
-												</tr>
-												<tr>
-													<td><a href="cueva-template.html">Emerald Cavern</a></td>
-													<td>Town E</td>
-													<td>Bats, Salamanders</td>
-													<td>Stalagmites, Moss</td>
-													<td>Medium</td>
-													<td>2023-06-12</td>
-												</tr>
-											</table>
-																		
-										</article>
-
-								</div>
+									<table>
+										<tr>
+											<th>Cave Name</th>
+											<th>Town</th>
+											<th>Cave Fauna</th>
+											<th>Cave Flora</th>
+											<th>Cave Size (3D Model)</th>
+											<th>Date Created</th>
+										</tr>
+										<tr>
+											<td><a href="cueva-template.html">Mystic Cave</a></td>
+											<td>Camuy</td>
+											<td>Bats, Salamanders</td>
+											<td>Stalagmites, Moss</td>
+											<td>Large</td>
+											<td>2023-10-12</td>
+										</tr>
+										<tr>
+											<td><a href="cueva-template.html">Crystal Cave</a></td>
+											<td>Camuy</td>
+											<td>Crabs</td>
+											<td>Stalactites, Algae</td>
+											<td>Medium</td>
+											<td>2023-09-25</td>
+										</tr>
+										<tr>
+											<td><a href="cueva-template.html">Echo Cave</a></td>
+											<td>Arecibo</td>
+											<td>Bats, Crickets</td>
+											<td>Moss</td>
+											<td>Small</td>
+											<td>2023-08-17</td>
+										</tr>
+										<tr>
+											<td><a href="cueva-template.html">Glowing Grotto</a></td>
+											<td>Arecibo</td>
+											<td>Frogs</td>
+											<td>Stalactites, Algae</td>
+											<td>Large</td>
+											<td>2023-07-05</td>
+										</tr>
+										<tr>
+											<td><a href="cueva-template.html">Emerald Cavern</a></td>
+											<td>Ponce</td>
+											<td>Bats, Salamanders</td>
+											<td>Stalagmites, Moss</td>
+											<td>Medium</td>
+											<td>2023-06-12</td>
+										</tr>
+									</table>											
+								</article>
 							</div>
 						</div>
 					</div>
-				</section>
+				</div>
+			</section>
 
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-							<section class="col-3 col-6-narrower col-12-mobilep">
-								<h3>Links to Stuff</h3>
-								<ul class="links">
-									<li><a href="#">Mattis et quis rutrum</a></li>
-									<li><a href="#">Suspendisse amet varius</a></li>
-									<li><a href="#">Sed et dapibus quis</a></li>
-									<li><a href="#">Rutrum accumsan dolor</a></li>
-									<li><a href="#">Mattis rutrum accumsan</a></li>
-									<li><a href="#">Suspendisse varius nibh</a></li>
-									<li><a href="#">Sed et dapibus mattis</a></li>
-								</ul>
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<section class="col-3 col-6-narrower col-12-mobilep">
+							<h3>Links to Stuff</h3>
+							<ul class="links">
+								<li><a href="#">Mattis et quis rutrum</a></li>
+								<li><a href="#">Suspendisse amet varius</a></li>
+								<li><a href="#">Sed et dapibus quis</a></li>
+								<li><a href="#">Rutrum accumsan dolor</a></li>
+								<li><a href="#">Mattis rutrum accumsan</a></li>
+								<li><a href="#">Suspendisse varius nibh</a></li>
+								<li><a href="#">Sed et dapibus mattis</a></li>
+							</ul>
 							</section>
 							<section class="col-3 col-6-narrower col-12-mobilep">
 								<h3>More Links to Stuff</h3>
