@@ -1,40 +1,116 @@
 function start() {
-    var towns = ["Arecibo" , "Camuy" , "Ponce"];
-    const canvas = document.getElementById("prmap");
+    var towns = [];
+    towns.push({
+        name: "Arecibo",
+        x: 420,
+        y: 80
+    }, {
+        name: "Camuy",
+        x: 300,
+        y: 90
+    }, {
+        name: "Ponce",
+        x: 320,
+        y: 420
+    });
+
+    var caves = [];
+
+    caves.push({
+        name:"Echo Cave",
+        town:"Arecibo"
+    }, {
+        name:"Glowing Grotto",
+        town:"Arecibo"
+    }, {
+        name:"Mystic Cave",
+        town:"Camuy"
+    }, {
+        name:"Crystal Cave",
+        town:"Camuy"
+    }, {   
+        name:"Emerald Cavern",
+        town:"Ponce"
+    });
+
+    const canvas = document.getElementById("prmap");    
+
+    const radius = 10;
+
     const context = canvas.getContext("2d");
+    
     const img = new Image();
     img.src = "images/PR-Map.png";
     img.onload = () => {
         context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
-        //create a method that checks a mapping to place the dots based on the values given to by the database 
-        //for now we just use an array to iterate through if statements to simulate the process
-        //the method will return the pair of corrds that the town belongs to.
         context.fillStyle = "#FF0000";
 
-        
-        
-        for (let i = 0; i < towns.length; i++) {
-            if (towns[i] == "Arecibo") {
-                context.beginPath();
-                context.arc(420,80, 10, 0, 2*40);
-                context.fill();
-                context.closePath();
-            } else if (towns[i] == "Camuy") {
-                context.beginPath();
-                context.arc(300,90, 10, 0, 2*40);
-                context.fill();
-                context.closePath();
-            } else if (towns[i] == "Ponce") {
-                context.beginPath();
-                context.arc(320, 420, 10, 0, 2*40);
-                context.fill();
-                context.closePath();
+        //algorithm assumes lists are order alphabetically by town name
+        var j = 0;
+        for (let i = 0; i < caves.length; i++) {
+            while (caves[i].town != towns[j].name) {
+                j++;
             }
+            context.beginPath();
+            context.arc(towns[j].x, towns[j].y, radius, 0, 2*40);
+            context.fill();
+            context.closePath();
         }
-         
+        //this will check when the canvas is clicked, as to where. Check the corresponding mapping and open the correct modal window as a result.
+        canvas.addEventListener('click', function(event) {
+            var x = event.pageX - (canvas.offsetLeft + canvas.clientLeft);
+            var y = event.pageY - (canvas.offsetTop + canvas.clientTop);
+            console.log(x,y);
+            
+            // Collision detection between clicked offset and element.
+            for(let i = 0; i < towns.length; i++) {
+                console.log(towns[i].x, towns[i].y)
+                if(y > towns[i].y - radius && y < towns[i].y + radius && x > towns[i].x - radius && x < towns[i].x + radius) {
+                    alert("DING DONG you clicked on: " + towns[i].name);
+                } 
+            }
+        }, false);
     };
-    
-
 
 }
 window.addEventListener("load", start);
+
+
+
+
+/*
+var elem = document.getElementById('myCanvas'),
+    elemLeft = elem.offsetLeft + elem.clientLeft,
+    elemTop = elem.offsetTop + elem.clientTop,
+    context = elem.getContext('2d'),
+    elements = [];
+
+// Add event listener for `click` events.
+elem.addEventListener('click', function(event) {
+    var x = event.pageX - elemLeft,
+        y = event.pageY - elemTop;
+
+    // Collision detection between clicked offset and element.
+    elements.forEach(function(element) {
+        if (y > element.top && y < element.top + element.height 
+            && x > element.left && x < element.left + element.width) {
+            alert('clicked an element');
+        }
+    });
+
+}, false);
+
+// Add element.
+elements.push({
+    colour: '#05EFFF',
+    width: 150,
+    height: 100,
+    top: 20,
+    left: 15
+});
+
+// Render elements.
+elements.forEach(function(element) {
+    context.fillStyle = element.colour;
+    context.fillRect(element.left, element.top, element.width, element.height);
+});​*/
