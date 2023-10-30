@@ -15,6 +15,15 @@ canvas {
 	height: 100%;
 }
 
+fieldset div {
+	display: inline-block;
+	text-align: justify; 
+}
+
+.delete {
+	background-color: #fe0000;
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -3408,7 +3417,7 @@ blockquote {
 label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+	font-weight: normal;
 }
 
 /* Style for the checkboxes */
@@ -3498,3 +3507,4 @@ tr:hover {
 .txtarea-short{
 	width: 45%; /* Adjust the width as needed */
 }
+

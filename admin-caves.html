@@ -21,9 +21,9 @@
 							<nav id="nav">
 								<ul>
 									<li><a href="index.html">Home</a></li>
-									<li><a href="search-cave.html">Search</a></li>
+									<li><a href="search-cave.html">Caves</a></li>
 									<li><a href="map.html">Map</a></li>
-									<li><a href="cueva-template.html">Random Cave</a></li>
+									<li><a href="cave-template.html">Random Cave</a></li>
 									<li><a href="">About Us</a></li>
 									<li class="current"><a href="admin-caves.html">Admin</a></li>
 									<li><a href="cave-creation.html">Cave Creation</a></li>
@@ -44,36 +44,55 @@
 									<!-- Sidebar -->
 
 										<section>
-											<h3>Cave Search</h3>
 											<form id="caveForm">
-												<label for="caveName">Search by Name:</label>
+												<h4>Search by Name:</h4>
 												<input type="text" id="caveName" name="caveName">
 												<br>
-												<label for="town">Town:</label>
-												<input type="text" id="town" name="town">
+												<h4>Town:</h4>
+												<select id="town" name="town">
+													<option value="">Select a Town</option>
+													<option value="Arecibo">Arecibo</option>	
+													<option value="Camuy">Camuy</option>
+													<option value="Fajardo">Fajardo</option>
+													<option value="Town C">Ponce</option>
+												</select>
 												<br>
-												<label>Fauna:</label>
-												<input type="checkbox" id="bats" name="fauna" value="bats">
-												<label for="bats">Bats</label>
-												<input type="checkbox" id="salamanders" name="fauna" value="salamanders">
-												<label for="salamanders">Salamanders</label>
-												<input type="checkbox" id="crickets" name="fauna" value="crickets">
-												<label for="crickets">Crickets</label>
-												<!-- Add more fauna checkboxes as needed -->
 												<br>
-										
-												<label>Flora:</label>
-												<input type="checkbox" id="stalagmites" name="flora" value="stalagmites">
-												<label for="stalagmites">Stalagmites</label>
-												<input type="checkbox" id="moss" name="flora" value="moss">
-												<label for="moss">Moss</label>
-												<input type="checkbox" id="algae" name="flora" value="algae">
-												<label for="algae">Algae</label>
-												<!-- Add more flora checkboxes as needed -->
+												<fieldset>
+													<h4>Biodiversity:</h4>
+													<div><input type="checkbox" id="Guano"><label for="Guano">Guano</label></div>
+													<div><input type="checkbox" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
+													<div><input type="checkbox" id="Algae"><label for="Algae">Algae</label></div>
+													<div><input type="checkbox" id="Fungi"><label for="Fungi">Fungi</label></div>
+													<div><input type="checkbox" id="Liches"><label for="Liches">Liches</label></div>
+													<div><input type="checkbox" id="Plants"><label for="Plants">Plants</label></div>
+													<div><input type="checkbox" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
+													<div><input type="checkbox" id="Porifera"><label for="Porifera">Porifera</label></div>
+													<div><input type="checkbox" id="Cnidarians"><label for="Cnidarians">Cnidarians</label></div>
+													<div><input type="checkbox" id="Platyhelminthes"><label for="Platyhelminthes">Platyhelminthes</label></div>
+													<div><input type="checkbox" id="Nemertina"><label for="Nemertina">Nemertina</label></div>
+													<div><input type="checkbox" id="Gastrotricha"><label for="Gastrotricha">Gastrotricha</label></div>
+													<div><input type="checkbox" id="Kinorhyncha"><label for="Kinorhyncha">Kinorhyncha</label></div>
+													<div><input type="checkbox" id="Nematoda"><label for="Nematoda">Nematoda</label></div>
+													<div><input type="checkbox" id="Annelida"><label for="Annelida">Annelida</label></div>
+													<div><input type="checkbox" id="Mollusca"><label for="Mollusca">Mollusca</label></div>
+													<div><input type="checkbox" id="Brachiopoda"><label for="Brachiopoda">Brachiopoda</label></div>
+													<div><input type="checkbox" id="Bryozoa"><label for="Bryozoa">Bryozoa</label></div>
+													<div><input type="checkbox" id="Curstacea"><label for="Curstacea">Curstacea</label></div>
+													<div><input type="checkbox" id="Chelicerata"><label for="Chelicerata">Chelicerata</label></div>
+													<div><input type="checkbox" id="Onychophora"><label for="Onychophora">Onychophora</label></div>
+													<div><input type="checkbox" id="Tardigrada"><label for="Tardigrada">Tardigrada</label></div>
+													<div><input type="checkbox" id="Myriapoda"><label for="Myriapoda">Myriapoda</label></div>
+													<div><input type="checkbox" id="Insecta"><label for="Insecta">Insecta</label></div>
+													<div><input type="checkbox" id="Pisces"><label for="Pisces">Pisces</label></div>
+													<div><input type="checkbox" id="Amphibians"><label for="Amphibians">Amphibians</label></div>
+													<div><input type="checkbox" id="Reptilia"><label for="Reptilia">Reptilia</label></div>
+													<div><input type="checkbox" id="Aves"><label for="Aves">Aves</label></div>
+													<div><input type="checkbox" id="Mammalia"><label for="Mammalia">Mammalia</label></div>	
+												</fieldset>
 												<br>
-												<footer>
 												<input type="submit" value="Search">
-												</footer>
+												<br>
 											</form>
 										</section>
 
@@ -87,69 +106,50 @@
 
 										<article>
 											<header>
-												<h2>Cave Table</h2>
-												<p>Here you can see the caves in the system</p>
+												<h2>Caves</h2>
+												<p>Click on a cave to edit its information</p>
 											</header>
-
 											<table>
 												<tr>
-													<th>Edit</th>
-													<th>Delete</th>
 													<th>Cave Name</th>
 													<th>Town</th>
-													<th>Cave Fauna</th>
-													<th>Cave Flora</th>
+													<th>Biodiversity</th>
 													<th>Cave Size (3D Model)</th>
 													<th>Date Created</th>
 												</tr>
 												<tr>
-													<td><button>Edit</button></td>
-													<td><button>Delete</button></td>
-													<td>Mystic Cave</td>
-													<td>Town A</td>
-													<td>Bats, Salamanders</td>
-													<td>Stalagmites, Moss</td>
-													<td>Large</td>
+													<td><a href="edit-cave.html">Mystic Cave</a></td>
+													<td>Camuy</td>
+													<td>Guano, Reptilia, Plants, Liches</td>
+													<td>23.6 GB</td>
 													<td>2023-10-12</td>
 												</tr>
 												<tr>
-													<td><button>Edit</button></td>
-													<td><button>Delete</button></td>
-													<td>Crystal Cave</td>
-													<td>Town B</td>
-													<td>Crabs</td>
-													<td>Stalactites, Algae</td>
-													<td>Medium</td>
+													<td><a href="edit-cave.html">Crystal Cave</a></td>
+													<td>Camuy</td>
+													<td>Curstecea, Algae </td>	
+													<td>13.4 GB</td>
 													<td>2023-09-25</td>
 												</tr>
 												<tr>
-													<td><button>Edit</button></td>
-													<td><button>Delete</button></td>
-													<td>Echo Cave</td>
-													<td>Town C</td>
-													<td>Bats, Crickets</td>
-													<td>Moss</td>
-													<td>Small</td>
+													<td><a href="edit-cave.html">Echo Cave</a></td>
+													<td>Arecibo</td>
+													<td>Guano, Insecta, Fungi</td>
+													<td>10.1 GB</td>
 													<td>2023-08-17</td>
 												</tr>
 												<tr>
-													<td><button>Edit</button></td>
-													<td><button>Delete</button></td>
-													<td>Glowing Grotto</td>
-													<td>Town D</td>
-													<td>Frogs</td>
-													<td>Stalactites, Algae</td>
-													<td>Large</td>
+													<td><a href="edit-cave.html">Glowing Grotto</a></td>
+													<td>Fajardo</td>
+													<td>Amphibians, Algae</td>
+													<td>47.6 GB</td>
 													<td>2023-07-05</td>
 												</tr>
 												<tr>
-													<td><button>Edit</button></td>
-													<td><button>Delete</button></td>
-													<td>Emerald Cavern</td>
-													<td>Town E</td>
-													<td>Bats, Salamanders</td>
-													<td>Stalagmites, Moss</td>
-													<td>Medium</td>
+													<td><a href="edit-cave.html">Emerald Cavern</a></td>
+													<td>Ponce</td>
+													<td>Guano, Reptilia, Fungi</td>
+													<td>23.2 GB</td>
 													<td>2023-06-12</td>
 												</tr>
 											</table>											

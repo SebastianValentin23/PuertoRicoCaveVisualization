@@ -9,9 +9,17 @@ function start() {
         x: 300,
         y: 90
     }, {
+        name: "Fajardo",
+        x: 1100,
+        y: 400
+    }, {
         name: "Ponce",
         x: 320,
         y: 420
+    }, {
+        name: "San Juan",
+        x: 800,
+        y: 85
     });
 
     var caves = [];
@@ -28,9 +36,15 @@ function start() {
     }, {
         name:"Crystal Cave",
         town:"Camuy"
+    }, {
+        name:"Coast Cavern",
+        town: "Fajardo"
     }, {   
         name:"Emerald Cavern",
         town:"Ponce"
+    }, {
+        name: "Ruby Cave",
+        town: "San Juan"
     });
 
     const canvas = document.getElementById("prmap");    

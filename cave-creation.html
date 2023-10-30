@@ -20,9 +20,9 @@
 						<nav id="nav">
 							<ul>
 									<li><a href="index.html">Home</a></li>
-									<li><a href="search-cave.html">Search</a></li>
+									<li><a href="search-cave.html">Caves</a></li>
 									<li><a href="map.html">Map</a></li>
-									<li><a href="cueva-template.html">Random Cave</a></li>
+									<li><a href="cave-template.html">Random Cave</a></li>
 									<li><a href="">About Us</a></li>
 									<li><a href="admin-caves.html">Admin</a></li>
 									<li class="current"><a href="cave-creation.html">Cave Creation</a></li>
@@ -39,59 +39,89 @@
 
 							<!-- Content -->
 
-								<article>
-									<header>
-										<h2>Cave Creation</h2>
-										<p>Fill form to make Cave.</p>
-									</header>
+							<article>
+								<header>
+									<h2>Add Cave</h2>
+								</header>
 
-									<form id="caveForm">
-										<label for="caveName">Cave Name:</label>
-										<input type="text" id="caveName" name="caveName">
-										<br>
-										
-										<label for="town">Town:</label>
-										<input type="text" id="town" name="town">
-										<br>
-										
-										<label for="description">Description:</label>
-										<textarea id="description" name="description" rows="4" cols="50"></textarea>
-										<br>
+								<form id="caveForm">
+									<h3>Cave Name:</h3>
+									<input type="text" id="caveName" name="caveName">
+									<br>
+									
+									<h3>Town</h3>
+									<select id="town" name="town">
+										<option value="">Select a Town</option>
+										<option value="Arecibo">Arecibo</option>	
+										<option value="Camuy">Camuy</option>
+										<option value="Fajardo">Fajardo</option>
+										<option value="Town C">Ponce</option>
+									</select>
+									<br><br>
+									
+									<h4>Biodiversity:</h4>
+									<fieldset>
+										<div><input type="checkbox" id="Guano"><label for="Guano">Guano</label></div>
+										<div><input type="checkbox" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
+										<div><input type="checkbox" id="Algae"><label for="Algae">Algae</label></div>
+										<div><input type="checkbox" id="Fungi"><label for="Fungi">Fungi</label></div>
+										<div><input type="checkbox" id="Liches"><label for="Liches">Liches</label></div>
+										<div><input type="checkbox" id="Plants"><label for="Plants">Plants</label></div>
+										<div><input type="checkbox" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
+										<div><input type="checkbox" id="Porifera"><label for="Porifera">Porifera</label></div>
+										<div><input type="checkbox" id="Cnidarians"><label for="Cnidarians">Cnidarians</label></div>
+										<div><input type="checkbox" id="Platyhelminthes"><label for="Platyhelminthes">Platyhelminthes</label></div>
+										<div><input type="checkbox" id="Nemertina"><label for="Nemertina">Nemertina</label></div>
+										<div><input type="checkbox" id="Gastrotricha"><label for="Gastrotricha">Gastrotricha</label></div>
+										<div><input type="checkbox" id="Kinorhyncha"><label for="Kinorhyncha">Kinorhyncha</label></div>
+										<div><input type="checkbox" id="Nematoda"><label for="Nematoda">Nematoda</label></div>
+										<div><input type="checkbox" id="Annelida"><label for="Annelida">Annelida</label></div>
+										<div><input type="checkbox" id="Mollusca"><label for="Mollusca">Mollusca</label></div>
+										<div><input type="checkbox" id="Brachiopoda"><label for="Brachiopoda">Brachiopoda</label></div>
+										<div><input type="checkbox" id="Bryozoa"><label for="Bryozoa">Bryozoa</label></div>
+										<div><input type="checkbox" id="Curstacea"><label for="Curstacea">Curstacea</label></div>
+										<div><input type="checkbox" id="Chelicerata"><label for="Chelicerata">Chelicerata</label></div>
+										<div><input type="checkbox" id="Onychophora"><label for="Onychophora">Onychophora</label></div>
+										<div><input type="checkbox" id="Tardigrada"><label for="Tardigrada">Tardigrada</label></div>
+										<div><input type="checkbox" id="Myriapoda"><label for="Myriapoda">Myriapoda</label></div>
+										<div><input type="checkbox" id="Insecta"><label for="Insecta">Insecta</label></div>
+										<div><input type="checkbox" id="Pisces"><label for="Pisces">Pisces</label></div>
+										<div><input type="checkbox" id="Amphibians"><label for="Amphibians">Amphibians</label></div>
+										<div><input type="checkbox" id="Reptilia"><label for="Reptilia">Reptilia</label></div>
+										<div><input type="checkbox" id="Aves"><label for="Aves">Aves</label></div>
+										<div><input type="checkbox" id="Mammalia"><label for="Mammalia">Mammalia</label></div>	
+									</fieldset>	
+									<br>
 
-										<label>Cave Fauna:</label>
-										<input type="checkbox" id="bats" name="fauna" value="bats">
-										<label for="bats">Bats</label>
-										<input type="checkbox" id="salamanders" name="fauna" value="salamanders">
-										<label for="salamanders">Salamanders</label>
-										<input type="checkbox" id="crickets" name="fauna" value="crickets">
-										<label for "crickets">Crickets</label>
-										<!-- Add more fauna checkboxes as needed -->
-										<br>
-								
-										<label>Cave Flora:</label>
-										<input type="checkbox" id="stalagmites" name="flora" value="stalagmites">
-										<label for="stalagmites">Stalagmites</label>
-										<input type="checkbox" id="moss" name="flora" value="moss">
-										<label for="moss">Moss</label>
-										<input type="checkbox" id="algae" name="flora" value="algae">
-										<label for="algae">Algae</label>
-										<!-- Add more flora checkboxes as needed -->
-										<br>
-								
-										<label for="caveSize">Cave Size (3D Model):</label>
-										<div class="file-input-container">
-											<button class="file-input-button">Choose File</button>
-											<input type="file" id="caveSize" name="caveSize" class="file-input">
-											<span class="file-input-text">No file chosen</span>
+									<h4>Exploration Date</h4>
+									<input type="date" id="exploration-date">
+									<br>
+									<br>
+									<fieldset>	
+										<div>
+											<h3>3D Model:</h3>
+											<div class="file-input-container">
+												<button class="file-input-button">Choose File</button>
+												<input type="file" id="caveSize" name="caveSize" class="file-input">
+												<span class="file-input-text">No File Chosen</span>
+											</div>
 										</div>
-										<br>
-										<br>
+										<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+										<div>
+										<h3>Download Link:</h3>
+											<div class="file-input-container">
+												<button class="file-input-button">Choose File</button>
+												<input type="file" id="caveSize" name="caveSize" class="file-input">
+											<span class="file-input-text">No File Chosen</span>
+											</div>
+										</div>
+									</fieldset>
+									<br>
+									<br>
+									<input type="submit" value="Create">
+								</form>
+							</article>
 
-
-								
-										<input type="submit" value="Add Cave">
-									</form>
-								</article>
 
 						</div>
 					</div>
