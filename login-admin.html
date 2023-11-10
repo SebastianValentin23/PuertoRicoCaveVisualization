@@ -44,7 +44,7 @@
 										<h2>Login</h2>
 									</header>
 
-									<form action="login.php" method="post" class="txtarea-short">
+									<form id="loginForm" class="txtarea-short">
 										<h4>Username:</h4>
 										<input  type="text" id="username" name="username" required>
 										
@@ -53,6 +53,7 @@
 										<br>
 
 										<input type="submit" value="Login">
+									</form>
 								</article>
 
 						</div>
@@ -138,6 +139,33 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					var isLoggedIn = false; 
+			
+					var loginForm = document.getElementById('loginForm');
+					var usernameField = document.getElementById('username');
+					var passwordField = document.getElementById('password');
+			
+					loginForm.addEventListener('submit', function(event) {
+						event.preventDefault();
+			
+						if (usernameField.value === "Acosta" && passwordField.value === "1234") {
+							isLoggedIn = true; 
+							redirectToIndex(isLoggedIn);
+						} else {
+							alert("Invalid credentials. Please try again.");
+						}
+					});
+			
+					function redirectToIndex(isLoggedIn) {
+						if (isLoggedIn) {
+							var indexURL = "index.html?isLoggedIn=true"; 
+							window.location.href = indexURL;
+						}
+					}
+				});
+			</script>
 
 	</body>
 </html>
