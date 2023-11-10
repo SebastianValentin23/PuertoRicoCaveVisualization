@@ -54,7 +54,7 @@
 													<option value="Arecibo">Arecibo</option>	
 													<option value="Camuy">Camuy</option>
 													<option value="Fajardo">Fajardo</option>
-													<option value="Town C">Ponce</option>
+													<option value="Ponce">Ponce</option>
 												</select>
 												<br>
 												<br>
@@ -109,7 +109,7 @@
 												<h2>Caves</h2>
 												<p>Click on a cave to edit its information</p>
 											</header>
-											<table>
+											<table id="cavesTable">
 												<tr>
 													<th>Cave Name</th>
 													<th>Town</th>
@@ -240,6 +240,95 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					document.getElementById('caveForm').addEventListener('submit', function(event) {
+						event.preventDefault();
+	
+						var name = document.getElementById('caveName').value.toLowerCase();
+						var town = document.getElementById('town').value;
+						var biodiversityFilters = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(function(checkbox) {
+							return checkbox.id;
+						});
+		
+						var caves = [
+						{
+                			name: 'Mystic Cave',
+                			town: 'Camuy',
+                			biodiversity: ['Guano', 'Reptilia', 'Plants', 'Liches'],
+                			size: '23.6 GB',
+                			date: '2023-10-12'
+            			},
+            			{
+                			name: 'Crystal Cave',
+                			town: 'Camuy',
+                			biodiversity: ['Curstecea', 'Algae'],
+                			size: '13.4 GB',
+                			date: '2023-09-25'
+            			},
+            			{
+                			name: 'Echo Cave',
+                			town: 'Arecibo',
+                			biodiversity: ['Guano', 'Insecta', 'Fungi'],
+                			size: '10.1 GB',
+                			date: '2023-08-17'
+            			},
+            			{
+                			name: 'Glowing Grotto',
+                			town: 'Fajardo',
+                			biodiversity: ['Amphibians', 'Algae'],
+                			size: '47.6 GB',
+                			date: '2023-07-05'
+            			},
+            			{
+                			name: 'Emerald Cavern',
+               				town: 'Ponce',
+                			biodiversity: ['Guano', 'Reptilia', 'Fungi'],
+                			size: '23.2 GB',
+                			date: '2023-06-12'
+            			}
+						];
+		
+						
+						var filteredCaves = caves.filter(function(cave) 
+						{
+							return (name === '' || cave.name.toLowerCase().includes(name)) &&
+								(town === '' || cave.town === town) &&
+								(biodiversityFilters.length === 0 || biodiversityFilters.every(function(filter) {
+									return cave.biodiversity.includes(filter);
+								}));
+						});
+						displayCaves(filteredCaves);
+					});
+		
+					function displayCaves(caves) {
+						var table = document.getElementById('cavesTable');
+						var tbody = table.querySelector('tbody');
+						if (tbody) {
+							table.removeChild(tbody);
+						}
+						tbody = document.createElement('tbody');
 
+
+						var row = tbody.insertRow();
+						row.insertCell().appendChild(document.createTextNode("Cave Name"));
+						row.insertCell().appendChild(document.createTextNode("Town"));
+						row.insertCell().appendChild(document.createTextNode("Biodiversity"));
+						row.insertCell().appendChild(document.createTextNode("Cave Size (3D Model)"));
+						row.insertCell().appendChild(document.createTextNode("Date Created"));
+						caves.forEach(function(cave) {
+							var row = tbody.insertRow();
+							var nameCell = row.insertCell();
+                    		nameCell.innerHTML = `<a href="edit-cave.html">${cave.name}</a>`;
+							row.insertCell().appendChild(document.createTextNode(cave.town));
+							row.insertCell().appendChild(document.createTextNode(cave.biodiversity.join(', ')));
+							row.insertCell().appendChild(document.createTextNode(cave.size));
+							row.insertCell().appendChild(document.createTextNode(cave.date));
+						});
+		
+						table.appendChild(tbody);
+					}
+				});
+			</script>
 	</body>
 </html>
