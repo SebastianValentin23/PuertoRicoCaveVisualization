@@ -23,7 +23,6 @@ function start() {
     });
 
     var caves = [];
-
     caves.push({
         name:"Echo Cave",
         town:"Arecibo"
@@ -46,6 +45,8 @@ function start() {
         name: "Ruby Cave",
         town: "San Juan"
     });
+
+    
 
     const canvas = document.getElementById("prmap");    
 
@@ -78,7 +79,7 @@ function start() {
             
             // Collision detection between clicked offset and element.
             for(let i = 0; i < towns.length; i++) {
-                console.log(towns[i].x, towns[i].y)
+                console.log(towns[i].name, towns[i].x, towns[i].y)
                 if(y > towns[i].y - radius && y < towns[i].y + radius && x > towns[i].x - radius && x < towns[i].x + radius) {
                     alert("DING DONG you clicked on: " + towns[i].name);
                 } 
@@ -87,44 +88,5 @@ function start() {
     };
 
 }
+
 window.addEventListener("load", start);
-
-
-
-
-/*
-var elem = document.getElementById('myCanvas'),
-    elemLeft = elem.offsetLeft + elem.clientLeft,
-    elemTop = elem.offsetTop + elem.clientTop,
-    context = elem.getContext('2d'),
-    elements = [];
-
-// Add event listener for `click` events.
-elem.addEventListener('click', function(event) {
-    var x = event.pageX - elemLeft,
-        y = event.pageY - elemTop;
-
-    // Collision detection between clicked offset and element.
-    elements.forEach(function(element) {
-        if (y > element.top && y < element.top + element.height 
-            && x > element.left && x < element.left + element.width) {
-            alert('clicked an element');
-        }
-    });
-
-}, false);
-
-// Add element.
-elements.push({
-    colour: '#05EFFF',
-    width: 150,
-    height: 100,
-    top: 20,
-    left: 15
-});
-
-// Render elements.
-elements.forEach(function(element) {
-    context.fillStyle = element.colour;
-    context.fillRect(element.left, element.top, element.width, element.height);
-});​*/
