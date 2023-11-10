@@ -25,28 +25,43 @@ function start() {
     var caves = [];
     caves.push({
         name:"Echo Cave",
-        town:"Arecibo"
+        town:"Arecibo",
+        link: "cave-template.html"
     }, {
         name:"Glowing Grotto",
-        town:"Arecibo"
+        town:"Arecibo",
+        link: "cave-template.html"
     }, {
         name:"Mystic Cave",
-        town:"Camuy"
+        town:"Camuy",
+        link: "cave-template.html"
     }, {
         name:"Crystal Cave",
-        town:"Camuy"
+        town:"Camuy",
+        link: "cave-template.html"
     }, {
         name:"Coast Cavern",
-        town: "Fajardo"
+        town: "Fajardo",
+        link: "cave-template.html"
     }, {   
         name:"Emerald Cavern",
-        town:"Ponce"
+        town:"Ponce",
+        link: "cave-template.html"
     }, {
         name: "Ruby Cave",
-        town: "San Juan"
+        town: "San Juan",
+        link: "cave-template.html"
     });
 
+    const modal = document.getElementById("modal");
+    const townName = document.getElementById("town-name");
+    const caveList = document.getElementById("cave-list");
+    const close = document.getElementById("close");
+    close.onclick = function(){
+        modal.style.display = "none";
+    }
     
+
 
     const canvas = document.getElementById("prmap");    
 
@@ -81,12 +96,29 @@ function start() {
             for(let i = 0; i < towns.length; i++) {
                 console.log(towns[i].name, towns[i].x, towns[i].y)
                 if(y > towns[i].y - radius && y < towns[i].y + radius && x > towns[i].x - radius && x < towns[i].x + radius) {
-                    alert("DING DONG you clicked on: " + towns[i].name);
-                } 
+                    //open popup with the names of the towns that belong in that town
+                    modal.style.display = "block";
+                    townName.innerHTML = towns[i].name;
+                    //go through the list of caves and show each one that corresponds to this town. 
+                    var cavesNames = "";
+                    for(let j=0; j < caves.length; j++){
+                        if(caves[j].town == towns[i].name) {
+                            cavesNames = cavesNames + "<a href='" + caves[j].link + "'>" + caves[j].name + "</a><br>";
+                        }
+                    }
+                    caveList.innerHTML = cavesNames;
+                }
             }
         }, false);
     };
-
 }
 
+
+  
+
 window.addEventListener("load", start);
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
