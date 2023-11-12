@@ -25,6 +25,7 @@
 						<li id="adminLink"><a href="admin-caves.html">Admin</a></li>
 						<li id="creationLink"><a href="cave-creation.html">Cave Creation</a></li>
 						<li id="loginLink"><a href="login-admin.html">Login</a></li>
+						<li id="logoutLink" style="display: none;"><a href="#">Log Out</a></li>
 
 					</ul>
 				</nav>
@@ -194,27 +195,5 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/config.js"></script>
-		<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var params = new URLSearchParams(window.location.search);
-                var isLoggedInParam = params.get("isLoggedIn");
-
-                if (isLoggedInParam === "true") {
-                    var loginLink = document.getElementById("loginLink");
-                    if (loginLink) {
-                        loginLink.innerHTML = "<a href='index.html'>Log Out</a>"; 
-                    }
-                }else{
-					var adminLink = document.getElementById("adminLink");
-                    var creationLink = document.getElementById("creationLink");	
-					if (adminLink) {
-                        adminLink.style.display = "none"; 
-                    }
-					if (creationLink) {
-                        creationLink.style.display = "none"; 
-                    }
-				}
-            });
-        </script>
 	</body>
 </html>

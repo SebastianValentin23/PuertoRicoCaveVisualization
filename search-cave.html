@@ -21,145 +21,138 @@
 							<nav id="nav">
 								<ul>
 									<li><a href="index.html">Home</a></li>
-									<li><a href="search-cave.html">Caves</a></li>
+									<li  class="current"><a href="search-cave.html">Caves</a></li>
 									<li><a href="map.html">Map</a></li>
 									<li><a href="cave-template.html">Random Cave</a></li>
 									<li><a href="">About Us</a></li>
-									<li class="current"><a href="admin-caves.html">Admin</a></li>
-									<li><a href="cave-creation.html">Cave Creation</a></li>
-									<li><a href="login-admin.html">Login</a></li>
-
+									<li id="adminLink"><a href="admin-caves.html">Admin</a></li>
+									<li id="creationLink"><a href="cave-creation.html">Cave Creation</a></li>
+									<li id="loginLink"><a href="login-admin.html">Login</a></li>
+									<li id="logoutLink" style="display: none;"><a href="#">Log Out</a></li>
 								</ul>
 							</nav>
 						</nav>
 				</div>
 
 			<!-- Main -->
-				<section class="wrapper style1">
-					<div class="container">
-						<div class="row gtr-200">
-							<div class="col-4 col-12-narrower">
-								<div id="sidebar">
-
-									<!-- Sidebar -->
-
-										<section>
-											<form id="caveForm">
-												<h4>Search by Name:</h4>
-												<input type="text" id="caveName" name="caveName">
-												<br>
-												<h4>Town:</h4>
-												<select id="town" name="town">
-													<option value="">Select a Town</option>
-													<option value="Arecibo">Arecibo</option>	
-													<option value="Camuy">Camuy</option>
-													<option value="Fajardo">Fajardo</option>
-													<option value="Ponce">Ponce</option>
-												</select>
-												<br>
-												<br>
-												<fieldset>
-													<h4>Biodiversity:</h4>
-													<div><input type="checkbox" id="Guano"><label for="Guano">Guano</label></div>
-													<div><input type="checkbox" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
-													<div><input type="checkbox" id="Algae"><label for="Algae">Algae</label></div>
-													<div><input type="checkbox" id="Fungi"><label for="Fungi">Fungi</label></div>
-													<div><input type="checkbox" id="Liches"><label for="Liches">Liches</label></div>
-													<div><input type="checkbox" id="Plants"><label for="Plants">Plants</label></div>
-													<div><input type="checkbox" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
-													<div><input type="checkbox" id="Porifera"><label for="Porifera">Porifera</label></div>
-													<div><input type="checkbox" id="Cnidarians"><label for="Cnidarians">Cnidarians</label></div>
-													<div><input type="checkbox" id="Platyhelminthes"><label for="Platyhelminthes">Platyhelminthes</label></div>
-													<div><input type="checkbox" id="Nemertina"><label for="Nemertina">Nemertina</label></div>
-													<div><input type="checkbox" id="Gastrotricha"><label for="Gastrotricha">Gastrotricha</label></div>
-													<div><input type="checkbox" id="Kinorhyncha"><label for="Kinorhyncha">Kinorhyncha</label></div>
-													<div><input type="checkbox" id="Nematoda"><label for="Nematoda">Nematoda</label></div>
-													<div><input type="checkbox" id="Annelida"><label for="Annelida">Annelida</label></div>
-													<div><input type="checkbox" id="Mollusca"><label for="Mollusca">Mollusca</label></div>
-													<div><input type="checkbox" id="Brachiopoda"><label for="Brachiopoda">Brachiopoda</label></div>
-													<div><input type="checkbox" id="Bryozoa"><label for="Bryozoa">Bryozoa</label></div>
-													<div><input type="checkbox" id="Curstacea"><label for="Curstacea">Curstacea</label></div>
-													<div><input type="checkbox" id="Chelicerata"><label for="Chelicerata">Chelicerata</label></div>
-													<div><input type="checkbox" id="Onychophora"><label for="Onychophora">Onychophora</label></div>
-													<div><input type="checkbox" id="Tardigrada"><label for="Tardigrada">Tardigrada</label></div>
-													<div><input type="checkbox" id="Myriapoda"><label for="Myriapoda">Myriapoda</label></div>
-													<div><input type="checkbox" id="Insecta"><label for="Insecta">Insecta</label></div>
-													<div><input type="checkbox" id="Pisces"><label for="Pisces">Pisces</label></div>
-													<div><input type="checkbox" id="Amphibians"><label for="Amphibians">Amphibians</label></div>
-													<div><input type="checkbox" id="Reptilia"><label for="Reptilia">Reptilia</label></div>
-													<div><input type="checkbox" id="Aves"><label for="Aves">Aves</label></div>
-													<div><input type="checkbox" id="Mammalia"><label for="Mammalia">Mammalia</label></div>	
-												</fieldset>
-												<br>
-												<input type="submit" value="Search">
-												<br>
-											</form>
-										</section>
-
-
-								</div>
+			<section class="wrapper style1">
+				<div class="container">
+					<div class="row gtr-200">
+						<div class="col-4 col-12-narrower">
+							<div id="sidebar">
+								<section>
+									<form id="caveForm">
+										<h4>Search by Name:</h4>
+										<input type="text" id="caveName" name="caveName">
+										<br>
+										<h4>Town:</h4>
+										<select id="town" name="town">
+											<option value="">Select a Town</option>
+											<option value="Arecibo">Arecibo</option>	
+											<option value="Camuy">Camuy</option>
+											<option value="Fajardo">Fajardo</option>
+											<option value="Town C">Ponce</option>
+										</select>
+										<br>
+										<br>
+										<fieldset>
+											<h4>Biodiversity:</h4>
+											<div><input type="checkbox" id="Guano"><label for="Guano">Guano</label></div>
+											<div><input type="checkbox" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
+											<div><input type="checkbox" id="Algae"><label for="Algae">Algae</label></div>
+											<div><input type="checkbox" id="Fungi"><label for="Fungi">Fungi</label></div>
+											<div><input type="checkbox" id="Liches"><label for="Liches">Liches</label></div>
+											<div><input type="checkbox" id="Plants"><label for="Plants">Plants</label></div>
+											<div><input type="checkbox" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
+											<div><input type="checkbox" id="Porifera"><label for="Porifera">Porifera</label></div>
+											<div><input type="checkbox" id="Cnidarians"><label for="Cnidarians">Cnidarians</label></div>
+											<div><input type="checkbox" id="Platyhelminthes"><label for="Platyhelminthes">Platyhelminthes</label></div>
+											<div><input type="checkbox" id="Nemertina"><label for="Nemertina">Nemertina</label></div>
+											<div><input type="checkbox" id="Gastrotricha"><label for="Gastrotricha">Gastrotricha</label></div>
+											<div><input type="checkbox" id="Kinorhyncha"><label for="Kinorhyncha">Kinorhyncha</label></div>
+											<div><input type="checkbox" id="Nematoda"><label for="Nematoda">Nematoda</label></div>
+											<div><input type="checkbox" id="Annelida"><label for="Annelida">Annelida</label></div>
+											<div><input type="checkbox" id="Mollusca"><label for="Mollusca">Mollusca</label></div>
+											<div><input type="checkbox" id="Brachiopoda"><label for="Brachiopoda">Brachiopoda</label></div>
+											<div><input type="checkbox" id="Bryozoa"><label for="Bryozoa">Bryozoa</label></div>
+											<div><input type="checkbox" id="Curstacea"><label for="Curstacea">Curstacea</label></div>
+											<div><input type="checkbox" id="Chelicerata"><label for="Chelicerata">Chelicerata</label></div>
+											<div><input type="checkbox" id="Onychophora"><label for="Onychophora">Onychophora</label></div>
+											<div><input type="checkbox" id="Tardigrada"><label for="Tardigrada">Tardigrada</label></div>
+											<div><input type="checkbox" id="Myriapoda"><label for="Myriapoda">Myriapoda</label></div>
+											<div><input type="checkbox" id="Insecta"><label for="Insecta">Insecta</label></div>
+											<div><input type="checkbox" id="Pisces"><label for="Pisces">Pisces</label></div>
+											<div><input type="checkbox" id="Amphibians"><label for="Amphibians">Amphibians</label></div>
+											<div><input type="checkbox" id="Reptilia"><label for="Reptilia">Reptilia</label></div>
+											<div><input type="checkbox" id="Aves"><label for="Aves">Aves</label></div>
+											<div><input type="checkbox" id="Mammalia"><label for="Mammalia">Mammalia</label></div>	
+										</fieldset>
+										<br>
+										<input type="submit" value="Search">
+										<br>
+									</form>
+								</section>
 							</div>
-							<div class="col-8  col-12-narrower imp-narrower">
-								<div id="content">
+						</div>
+					
+						<div class="col-8  col-12-narrower imp-narrower">
+							<div id="content">
+								<article>
+									<header>
+										<h2>Cave List</h2>
+									</header>
 
-									<!-- Content -->
+									<table id="cavesTable">
+										<tr>
+											<th>Cave Name</th>
+											<th>Town</th>
+											<th>Biodiversity</th>
 
-										<article>
-											<header>
-												<h2>Caves</h2>
-												<p>Click on a cave to edit its information</p>
-											</header>
-											<table id="cavesTable">
-												<tr>
-													<th>Cave Name</th>
-													<th>Town</th>
-													<th>Biodiversity</th>
-													<th>Cave Size (3D Model)</th>
-													<th>Date Created</th>
-												</tr>
-												<tr>
-													<td><a href="cave-template.html">Mystic Cave</a></td>
-													<td>Camuy</td>
-													<td>Guano, Reptilia, Plants, Liches</td>
-													<td>23.6 GB</td>
-													<td>2023-10-12</td>
-												</tr>
-												<tr>
-													<td><a href="cave-template.html">Crystal Cave</a></td>
-													<td>Camuy</td>
-													<td>Curstecea, Algae </td>	
-													<td>13.4 GB</td>
-													<td>2023-09-25</td>
-												</tr>
-												<tr>
-													<td><a href="cave-template.html">Echo Cave</a></td>
-													<td>Arecibo</td>
-													<td>Guano, Insecta, Fungi</td>
-													<td>10.1 GB</td>
-													<td>2023-08-17</td>
-												</tr>
-												<tr>
-													<td><a href="cave-template.html">Glowing Grotto</a></td>
-													<td>Fajardo</td>
-													<td>Amphibians, Algae</td>
-													<td>47.6 GB</td>
-													<td>2023-07-05</td>
-												</tr>
-												<tr>
-													<td><a href="cave-template.html">Emerald Cavern</a></td>
-													<td>Ponce</td>
-													<td>Guano, Reptilia, Fungi</td>
-													<td>23.2 GB</td>
-													<td>2023-06-12</td>
-												</tr>
-											</table>											
-										</article>
-
-								</div>
+											<th>Cave Size (3D Model)</th>
+											<th>Date Created</th>
+										</tr>
+										<tr>
+											<td><a href="cave-template.html">Mystic Cave</a></td>
+											<td>Camuy</td>
+											<td>Guano, Reptilia, Plants, Liches</td>
+											<td>23.6 GB</td>
+											<td>2023-10-12</td>
+										</tr>
+										<tr>
+											<td><a href="cave-template.html">Crystal Cave</a></td>
+											<td>Camuy</td>
+											<td>Curstecea, Algae </td>	
+											<td>13.4 GB</td>
+											<td>2023-09-25</td>
+										</tr>
+										<tr>
+											<td><a href="cave-template.html">Echo Cave</a></td>
+											<td>Arecibo</td>
+											<td>Guano, Insecta, Fungi</td>
+											<td>10.1 GB</td>
+											<td>2023-08-17</td>
+										</tr>
+										<tr>
+											<td><a href="cave-template.html">Glowing Grotto</a></td>
+											<td>Fajardo</td>
+											<td>Amphibians, Algae</td>
+											<td>47.6 GB</td>
+											<td>2023-07-05</td>
+										</tr>
+										<tr>
+											<td><a href="cave-template.html">Emerald Cavern</a></td>
+											<td>Ponce</td>
+											<td>Guano, Reptilia, Fungi</td>
+											<td>23.2 GB</td>
+											<td>2023-06-12</td>
+										</tr>
+									</table>											
+								</article>
 							</div>
 						</div>
 					</div>
-				</section>
+				</div>
+			</section>
 
 			<!-- Footer -->
 				<div id="footer">
@@ -240,95 +233,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script>
-				document.addEventListener("DOMContentLoaded", function() {
-					document.getElementById('caveForm').addEventListener('submit', function(event) {
-						event.preventDefault();
-	
-						var name = document.getElementById('caveName').value.toLowerCase();
-						var town = document.getElementById('town').value;
-						var biodiversityFilters = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(function(checkbox) {
-							return checkbox.id;
-						});
-		
-						var caves = [
-						{
-                			name: 'Mystic Cave',
-                			town: 'Camuy',
-                			biodiversity: ['Guano', 'Reptilia', 'Plants', 'Liches'],
-                			size: '23.6 GB',
-                			date: '2023-10-12'
-            			},
-            			{
-                			name: 'Crystal Cave',
-                			town: 'Camuy',
-                			biodiversity: ['Curstecea', 'Algae'],
-                			size: '13.4 GB',
-                			date: '2023-09-25'
-            			},
-            			{
-                			name: 'Echo Cave',
-                			town: 'Arecibo',
-                			biodiversity: ['Guano', 'Insecta', 'Fungi'],
-                			size: '10.1 GB',
-                			date: '2023-08-17'
-            			},
-            			{
-                			name: 'Glowing Grotto',
-                			town: 'Fajardo',
-                			biodiversity: ['Amphibians', 'Algae'],
-                			size: '47.6 GB',
-                			date: '2023-07-05'
-            			},
-            			{
-                			name: 'Emerald Cavern',
-               				town: 'Ponce',
-                			biodiversity: ['Guano', 'Reptilia', 'Fungi'],
-                			size: '23.2 GB',
-                			date: '2023-06-12'
-            			}
-						];
-		
-						
-						var filteredCaves = caves.filter(function(cave) 
-						{
-							return (name === '' || cave.name.toLowerCase().includes(name)) &&
-								(town === '' || cave.town === town) &&
-								(biodiversityFilters.length === 0 || biodiversityFilters.every(function(filter) {
-									return cave.biodiversity.includes(filter);
-								}));
-						});
-						displayCaves(filteredCaves);
-					});
-		
-					function displayCaves(caves) {
-						var table = document.getElementById('cavesTable');
-						var tbody = table.querySelector('tbody');
-						if (tbody) {
-							table.removeChild(tbody);
-						}
-						tbody = document.createElement('tbody');
-
-
-						var row = tbody.insertRow();
-						row.insertCell().appendChild(document.createTextNode("Cave Name"));
-						row.insertCell().appendChild(document.createTextNode("Town"));
-						row.insertCell().appendChild(document.createTextNode("Biodiversity"));
-						row.insertCell().appendChild(document.createTextNode("Cave Size (3D Model)"));
-						row.insertCell().appendChild(document.createTextNode("Date Created"));
-						caves.forEach(function(cave) {
-							var row = tbody.insertRow();
-							var nameCell = row.insertCell();
-                    		nameCell.innerHTML = `<a href="cave-template.html">${cave.name}</a>`;
-							row.insertCell().appendChild(document.createTextNode(cave.town));
-							row.insertCell().appendChild(document.createTextNode(cave.biodiversity.join(', ')));
-							row.insertCell().appendChild(document.createTextNode(cave.size));
-							row.insertCell().appendChild(document.createTextNode(cave.date));
-						});
-		
-						table.appendChild(tbody);
-					}
-				});
-			</script>
+			<script src="assets/js/config.js"></script>
 	</body>
 </html>

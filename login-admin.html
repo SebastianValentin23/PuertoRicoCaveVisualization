@@ -139,33 +139,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script>
-				document.addEventListener("DOMContentLoaded", function() {
-					var isLoggedIn = false; 
-			
-					var loginForm = document.getElementById('loginForm');
-					var usernameField = document.getElementById('username');
-					var passwordField = document.getElementById('password');
-			
-					loginForm.addEventListener('submit', function(event) {
-						event.preventDefault();
-			
-						if (usernameField.value === "Acosta" && passwordField.value === "1234") {
-							isLoggedIn = true; 
-							redirectToIndex(isLoggedIn);
-						} else {
-							alert("Invalid credentials. Please try again.");
-						}
-					});
-			
-					function redirectToIndex(isLoggedIn) {
-						if (isLoggedIn) {
-							var indexURL = "index.html?isLoggedIn=true"; 
-							window.location.href = indexURL;
-						}
-					}
-				});
-			</script>
+			<script src="assets/js/config.js"></script>
 
 	</body>
 </html>
