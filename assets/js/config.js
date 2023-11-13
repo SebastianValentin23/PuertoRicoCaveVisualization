@@ -56,32 +56,33 @@ document.addEventListener("DOMContentLoaded", function() {
 				
             });
 //Login page script	            
-        document.addEventListener("DOMContentLoaded", function() {
-            var isLoggedIn = false; 
+document.addEventListener("DOMContentLoaded", function() {
+    var isLoggedIn = false; 
 
-            var loginForm = document.getElementById('loginForm');
-            var usernameField = document.getElementById('username');
-            var passwordField = document.getElementById('password');
+    var loginForm = document.getElementById('loginForm');
+    var usernameField = document.getElementById('username');
+    var passwordField = document.getElementById('password');
 
-            loginForm.addEventListener('submit', function(event) {
-                event.preventDefault();
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-                if (usernameField.value === "Acosta" && passwordField.value === "1234") {
-                    isLoggedIn = true; 
-                    redirectToIndex(isLoggedIn);
-                } else {
-                    alert("Invalid credentials. Please try again.");
-                }
-            });
+        if (usernameField.value === "Acosta" && passwordField.value === "1234") {
+            isLoggedIn = true; 
+            redirectToIndex(isLoggedIn);
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    });
 
-            function redirectToIndex(isLoggedIn) {
-                if (isLoggedIn) {
-                    sessionStorage.setItem('isLoggedIn', 'true');
-                    var indexURL = "index.html";
-                    window.location.href = indexURL;
-                }
-            }
-        });
+    function redirectToIndex(isLoggedIn) {
+        if (isLoggedIn) {
+            sessionStorage.setItem('isLoggedIn', 'true');
+            var indexURL = "index.html";
+            window.location.href = indexURL;
+        }
+    }
+});
+
 //Cave Page Script
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('caveForm').addEventListener('submit', function(event) {

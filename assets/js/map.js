@@ -61,12 +61,8 @@ function start() {
         modal.style.display = "none";
     }
     
-
-
     const canvas = document.getElementById("prmap");    
-
     const radius = 10;
-
     const context = canvas.getContext("2d");
     
     const img = new Image();
@@ -75,7 +71,7 @@ function start() {
         context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
         context.fillStyle = "#FF0000";
 
-        //algorithm assumes lists are order alphabetically by town name
+        //algorithm assumes lists are ordered alphabetically by town name
         var j = 0;
         for (let i = 0; i < caves.length; i++) {
             while (caves[i].town != towns[j].name) {
@@ -121,4 +117,4 @@ window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
-  }
+}
