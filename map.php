@@ -1,22 +1,25 @@
 <html>
     <head>
 	    <link rel="stylesheet" href="assets/css/map.css" />
+        <link rel="stylesheet" href="assets/css/main.css" />
     </head>
-    <h1>Testing Map</h1>
+    <h1>
+        <?php require './db-requests/map-request.php';?> 
+    </h1>
+    <body>
     <nav id="nav">
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="search-cave.html">Caves</a></li>
-            <li class="current"><a href="map.html">Map</a></li>
-            <li><a href="cave-template.html">Random Cave</a></li>
+            <li class="current"><a href="map.php">Map</a></li>
             <li><a href="">About Us</a></li>
             <li><a href="admin-caves.html">Admin</a></li>
             <li><a href="cave-creation.html">Cave Creation</a></li>
             <li><a href="login-admin.html">Login</a></li>
         </ul>
     </nav>
-
-    <canvas id="prmap" width="1300" height="500" href="cueva-template.html"></canvas>  
+    
+        <canvas id="prmap" width="1300" height="500" href="cueva-template.html"></canvas>  
     
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -75,6 +78,12 @@
             </ul>
         </div>
     </div>
-
-    <script src="assets/js/map.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+        <script src="assets/js/map.js"></script>
+    </body>
 </html>

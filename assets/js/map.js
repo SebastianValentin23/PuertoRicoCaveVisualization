@@ -1,62 +1,21 @@
 function start() {
+    console.log(caves)
     var towns = [];
     towns.push({
-        name: "Arecibo",
-        x: 420,
-        y: 80
+        name: "Morovis",
+        x: 700,
+        y: 140
     }, {
-        name: "Camuy",
-        x: 300,
-        y: 90
-    }, {
-        name: "Fajardo",
-        x: 1100,
-        y: 400
-    }, {
-        name: "Ponce",
-        x: 320,
-        y: 420
-    }, {
-        name: "San Juan",
-        x: 800,
-        y: 85
-    });
-
-    var caves = [];
-    caves.push({
-        name:"Echo Cave",
-        town:"Arecibo",
-        link: "cave-template.html"
-    }, {
-        name:"Glowing Grotto",
-        town:"Arecibo",
-        link: "cave-template.html"
-    }, {
-        name:"Mystic Cave",
-        town:"Camuy",
-        link: "cave-template.html"
-    }, {
-        name:"Crystal Cave",
-        town:"Camuy",
-        link: "cave-template.html"
-    }, {
-        name:"Coast Cavern",
-        town: "Fajardo",
-        link: "cave-template.html"
-    }, {   
-        name:"Emerald Cavern",
-        town:"Ponce",
-        link: "cave-template.html"
-    }, {
-        name: "Ruby Cave",
-        town: "San Juan",
-        link: "cave-template.html"
-    });
+        name: "Utuado",
+        x: 470,
+        y: 200
+    }); 
 
     const modal = document.getElementById("modal");
     const townName = document.getElementById("town-name");
     const caveList = document.getElementById("cave-list");
     const close = document.getElementById("close");
+    
     close.onclick = function(){
         modal.style.display = "none";
     }
@@ -98,8 +57,9 @@ function start() {
                     //go through the list of caves and show each one that corresponds to this town. 
                     var cavesNames = "";
                     for(let j=0; j < caves.length; j++){
+                        console.log(caves[j])
                         if(caves[j].town == towns[i].name) {
-                            cavesNames = cavesNames + "<a href='" + caves[j].link + "'>" + caves[j].name + "</a><br>";
+                            cavesNames = cavesNames + "<a href='cave.php?id=" + caves[j].cave_id + "'>" + caves[j].name + "</a><br>";
                         }
                     }
                     caveList.innerHTML = cavesNames;
