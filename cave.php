@@ -9,10 +9,10 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<h1>
 		<?php require './db-requests/cave-request.php';?>
-	</h1>
+		<?php echo "<script>var model = '" . $cave["model_link"] . "'</script>" ?> 
+	</head>
+	
 	<body class="is-preload">
 		<div id="page-wrapper">
 			<div id="header">
@@ -32,28 +32,28 @@
 
 			<!-- Content -->
 			<div id="content">
-			
 				<article>
 					<header>
 						<h2><?php echo $cave["name"] ?></h2>
 						<p><?php echo $cave["town"] ?></p>
 					</header>
 					<div class="model-viewer">
-						<script type="module" src="/main.js"></script>
+						<script type="module" src="/model.js"></script>
 					</div>
 					<header>
-						<a href="/model-viewer.php">Model</a>
+						<a href="/model-viewer.php?model=<?php echo $cave["model_link"];?>" target=”_blank”>Model</a>
 						<h3>Biodiversity:</h3>
 						<br>
-						<p><!--ADD PHP CODE FROM GRABBING THE BIODIVERSITY --></p>
+						<p><!--ADD PHP CODE TO GRAB THE BIODIVERSITY --></p>
 					</header>											
 					<h3>Download Links:</h3>
 						<ul class="links">
-							<li><a href="cueva-<?php echo $cave["name"] . "/" . $cave["download_link"]?>" download>LAZ format</a></li>
-							<li><a href="cueva-<?php echo $cave["name"] . "/" . $cave["model_link"]?>" download>PLY format</a></li>
+							<li><a href="cuevas/<?php echo $cave["download_link"];?>" download>LAZ format</a></li>
+							<li><a href="cuevas/<?php echo $cave["model_link"];?>" download>PLY format</a></li>
 						</ul>
 				</article>
 			</div>
+			
 
 			<div id="footer">
 				<div class="container">

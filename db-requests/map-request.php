@@ -17,7 +17,6 @@ echo "<p>Connected successfully</p>";
 $sql = "SELECT cave_id, name, town FROM cave ORDER BY town";
 $result = $conn->query($sql);
 
-;
 echo "<script>var caves = [];</script>";
 
 if ($result->num_rows > 0) {
