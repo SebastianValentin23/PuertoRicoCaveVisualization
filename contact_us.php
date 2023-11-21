@@ -35,9 +35,6 @@
         $missingFields = array();
 
         // Check if all form fields are filled
-        if (empty($_POST['date'])) {
-            $missingFields[] = 'Date';
-        }
         if (empty($_POST['name'])) {
             $missingFields[] = 'Name';
         }
@@ -62,7 +59,6 @@
             $messageClass = 'error';
         } else {
             // Retrieve form data
-            $date = $_POST["date"];
             $name = $_POST["name"];
             $last_name = $_POST["last_name"];
             $email = $_POST["email"];
@@ -70,8 +66,11 @@
             $use = $_POST["use"];
             $comment = $_POST["comment"];
 
+            // Get the current date
+            $date = date("Y-m-d");
+
             // Insert data into the 'solicitors' table
-			$sql = "INSERT INTO solicitors (date, name, last_name, email, subject, `use`, comment) VALUES ('$date', '$name', '$last_name', '$email', '$subject', '$use', '$comment')";
+            $sql = "INSERT INTO solicitors (date, name, last_name, email, subject, `use`, comment) VALUES ('$date', '$name', '$last_name', '$email', '$subject', '$use', '$comment')";
 
             if ($conn->query($sql) === TRUE) {
                 $message = 'Your information has been submitted successfully';
@@ -86,6 +85,7 @@
     // Close the database connection
     $conn->close();
     ?>
+
     
 		<div id="page-wrapper">
 			<div id="header">
@@ -109,35 +109,34 @@
 								<p class="<?= $messageClass; ?>"><?php echo $message; ?></p>
 							<?php endif; ?>
 
-							<form action="contact_us.php" method="post">
-								<label for="date">Date:</label>
-								<input type="date" id="date" name="date" required><br>
+							<form action="contact.php" method="post">
+							<input type="hidden" name="date" value="<?php echo date("Y-m-d"); ?>">
 
-								<label for="name">Name:</label>
-								<input type="text" id="name" name="name" required><br>
+							<label for="name">Name:</label>
+							<input type="text" id="name" name="name" required><br>
 
-								<label for="last_name">Last Name:</label>
-								<input type="text" id="last_name" name="last_name" required><br>
+							<label for="last_name">Last Name:</label>
+							<input type="text" id="last_name" name="last_name" required><br>
 
-								<label for="email">Email:</label>
-								<input type="email" id="email" name="email" required><br>
+							<label for="email">Email:</label>
+							<input type="email" id="email" name="email" required><br>
 
-								<label for="subject">Subject:</label>
-								<input type="text" id="subject" name="subject" required><br>
+							<label for="subject">Subject:</label>
+							<input type="text" id="subject" name="subject" required><br>
 
-								<label for="use">Use:</label>
-								<select id="use" name="use" required>
-									<option value="" disabled selected>Select Use</option>
-									<option value="Academia">Academia</option>
-									<option value="Industry">Industry</option>
-									<option value="Investigation">Investigation</option>
-								</select><br>
+							<label for="use">Use:</label>
+							<select id="use" name="use" required>
+								<option value="" disabled selected>Select Use</option>
+								<option value="Academia">Academia</option>
+								<option value="Industry">Industry</option>
+								<option value="Investigation">Investigation</option>
+							</select><br>
 
-								<label for="comment">Comment:</label>
-								<textarea id="comment" name="comment" rows="4" required></textarea><br>
+							<label for="comment">Comment:</label>
+							<textarea id="comment" name="comment" rows="4" required></textarea><br>
 
-								<input type="submit" value="Submit">
-							</form>
+							<input type="submit" value="Submit">
+						</form>
 						</article>
 					</div>
 				</div>
