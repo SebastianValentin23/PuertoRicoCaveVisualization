@@ -19,5 +19,4 @@ if (!mysqli_select_db($conn, $dbname)) {
     die("Error: " . mysqli_error($conn));
 }
 
-echo "<p>Connected successfully</p>";
 ?>
