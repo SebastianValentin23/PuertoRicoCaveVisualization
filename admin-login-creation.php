@@ -95,8 +95,10 @@ $conn->close();
 						<li><a href="amin-caves-master.html">Master Caves</a></li>
 						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
 						<li class="current"><a href="admin-login-creation.php">Create Account</a></li>
+						<li><a href="admin-account-activation.php">Accounts</a></li>
 						<li><a href="admin-login.php">Login</a></li>					
-						<li><a href="index.html">User</a></li>					</ul>
+						<li><a href="index.html">User</a></li>					
+					</ul>
 				</nav>
 			</div>
 
