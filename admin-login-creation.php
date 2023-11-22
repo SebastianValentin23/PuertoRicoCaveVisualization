@@ -107,7 +107,7 @@ $conn->close();
 								<p class="<?= $messageClass; ?>"><?php echo $message; ?></p>
 							<?php endif; ?>
 
-							<form action="login-creation.php" method="post">
+							<form action="admin-login-creation.php" method="post">
 								<label for="email">Email:</label>
 								<input type="email" id="email" name="email" required><br>
 
