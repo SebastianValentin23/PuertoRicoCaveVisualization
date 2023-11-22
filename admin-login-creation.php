@@ -90,8 +90,13 @@ $conn->close();
 			<div id="header">
 				<nav id="nav">
 					<ul>
-						<li><a href="admin-caves-master.html">Admin</a></li>
-					</ul>
+						<li><a href="cave-creation.html">Cave Creation</a></li>	
+						<li><a href="admin-caves.html">Admin Caves</a></li>
+						<li><a href="amin-caves-master.html">Master Caves</a></li>
+						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
+						<li class="current"><a href="admin-login-creation.php">Create Account</a></li>
+						<li><a href="admin-login.php">Login</a></li>					
+						<li><a href="index.html">User</a></li>					</ul>
 				</nav>
 			</div>
 
@@ -123,6 +128,7 @@ $conn->close();
 								<label for="authorization">Authorization:</label>
 								<select id="authorization" name="authorization" required>
 									<option value="" disabled selected>Select Authorization</option>
+									<option value="master">Master</option>
 									<option value="admin">Admin</option>
 									<option value="publisher">Publisher</option>
 								</select><br>

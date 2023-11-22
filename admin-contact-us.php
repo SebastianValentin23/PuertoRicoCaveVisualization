@@ -19,7 +19,13 @@
 			<div id="header">
 				<nav id="nav">
 					<ul>
-						<li><a href="admin-caves-master.html">Admin</a></li>
+						<li><a href="cave-creation.html">Cave Creation</a></li>	
+						<li><a href="admin-caves.html">Admin Caves</a></li>
+						<li><a href="admin-caves-master.html">Master Caves</a></li>
+						<li  class="current"><a href="admin-contact-us.php">Admin Contact Us</a></li>
+						<li><a href="admin-login-creation.php">Create Account</a></li>
+						<li><a href="admin-login.php">Login</a></li>					
+						<li><a href="index.html">User</a></li>
 					</ul>
 				</nav>
 			</div>

@@ -21,11 +21,8 @@
 						<li><a href="index.html">Home</a></li>
 						<li class="current"><a href="search-cave.html">Caves</a></li>
 						<li><a href="map.php">Map</a></li>
-						<li><a href="">About Us</a></li>
-						<li id="adminLink"><a href="admin-caves.html">Admin</a></li>
-						<li id="creationLink"><a href="cave-creation.html">Cave Creation</a></li>
-						<li id="loginLink"><a href="login-admin.html">Login</a></li>
-						<li id="logoutLink" style="display: none;"><a href="#">Log Out</a></li>
+						<li><a href="contact-us.php">Contact Us</a></li>
+						<li id="loginLink"><a href="admin-login.php">Admin</a></li>
 					</ul>
 				</nav>
 			</div>	
@@ -35,7 +32,7 @@
 				<article>
 					<header>
 						<h2><?php echo $cave["name"] ?></h2>
-						<p><?php echo $cave["town"] ?></p>
+						<p><?php echo "Town: " . $cave["town"] ?></p>
 					</header>
 					<div class="model-viewer">
 						<script type="module" src="/model.js"></script>
