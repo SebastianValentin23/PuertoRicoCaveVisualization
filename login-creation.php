@@ -23,61 +23,68 @@
 	<body class="is-preload">
 		
 	<?php
-    // Include the database connection file
-    include 'db_info.php';
+// Include the database connection file
+include 'db_info.php';
 
-    // Initialize messages
-    $message = '';
-    $messageClass = '';
+// Initialize messages
+$message = '';
+$messageClass = '';
 
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $missingFields = array();
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $missingFields = array();
 
-        // Check if all form fields are filled
-        if (empty($_POST['email'])) {
-            $missingFields[] = 'Email';
-        }
-        if (empty($_POST['password'])) {
-            $missingFields[] = 'Password';
-        }
-        if (empty($_POST['name'])) {
-            $missingFields[] = 'Name';
-        }
-        if (empty($_POST['lastname'])) {
-            $missingFields[] = 'Last Name';
-        }
-        if (empty($_POST['authorization'])) {
-            $missingFields[] = 'Authorization';
-        }
-
-        if (!empty($missingFields)) {
-            $message = 'Please fill in all required fields: ' . implode(', ', $missingFields);
-            $messageClass = 'error';
-        } else {
-            // Retrieve form data
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $name = $_POST["name"];
-            $lastname = $_POST["lastname"];
-            $authorization = $_POST["authorization"];
-
-            // Insert data into the 'admins' table
-            $sql = "INSERT INTO admins (email, password, name, lastname, authorization) VALUES ('$email', '$password', '$name', '$lastname', '$authorization')";
-
-            if ($conn->query($sql) === TRUE) {
-                $message = 'New record created successfully';
-                $messageClass = 'success';
-            } else {
-                $message = 'Error: ' . $sql . '<br>' . $conn->error;
-                $messageClass = 'error';
-            }
-        }
+    // Check if all form fields are filled
+    if (empty($_POST['email'])) {
+        $missingFields[] = 'Email';
+    }
+    if (empty($_POST['password'])) {
+        $missingFields[] = 'Password';
+    }
+    if (empty($_POST['name'])) {
+        $missingFields[] = 'Name';
+    }
+    if (empty($_POST['lastname'])) {
+        $missingFields[] = 'Last Name';
+    }
+    if (empty($_POST['authorization'])) {
+        $missingFields[] = 'Authorization';
     }
 
-    // Close the database connection
-    $conn->close();
-    ?>
+    if (!empty($missingFields)) {
+        $message = 'Please fill in all required fields: ' . implode(', ', $missingFields);
+        $messageClass = 'error';
+    } else {
+        // Retrieve form data
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $name = $_POST["name"];
+        $lastname = $_POST["lastname"];
+        $authorization = $_POST["authorization"];
+
+        // Hash the password before storing it in the database
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert data into the 'admins' table
+        $stmt = $conn->prepare("INSERT INTO admins (email, password, name, lastname, authorization) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $email, $hashedPassword, $name, $lastname, $authorization);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $message = 'New record created successfully';
+            $messageClass = 'success';
+        } else {
+            $message = 'Error: ' . $stmt->error;
+            $messageClass = 'error';
+        }
+
+        $stmt->close();
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
     
 		<div id="page-wrapper">
 			<div id="header">
