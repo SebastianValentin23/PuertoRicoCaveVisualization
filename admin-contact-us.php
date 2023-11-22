@@ -76,7 +76,7 @@
 								$result = $conn->query($sql);
 
 								// Display the button only if respond_date is empty
-								echo '<form action="contact_us_admin.php" method="post">';
+								echo '<form action="admin-contact-us.php" method="post">';
 								echo '<input type="submit" name="filter_non_responded" value="Show Non-Responded Solicitors">';
 								echo '</form>';
 
