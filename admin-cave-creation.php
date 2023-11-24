@@ -1,6 +1,6 @@
 <?php
- session_start();
-?>
+    session_start();
+?> 
 <!DOCTYPE HTML>
 <!--
 	Arcana by HTML5 UP
@@ -9,25 +9,22 @@
 -->
 <html>
 	<head>
-		<title>Messages</title>
+		<title>Cave Creation</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-
-        
 	</head>
 	<body class="is-preload">
-
 		<div id="page-wrapper">
 			<div id="header">
 			<nav id="nav">
 					<ul>
-						<li ><a href="admin-cave-creation.php">Cave Creation</a></li>
+						<li class="current"><a href="admin-cave-creation.php">Cave Creation</a></li>
                         <?php
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as master or admin, display "Admin Caves"
-									echo '<li><a href="admin-caves.php">Admin Caves</a></li>';
+									echo '<li ><a href="admin-caves.php">Admin Caves</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher") {
 									// User is logged in as publisher, do not display "Admin Caves"
 								}
@@ -49,13 +46,13 @@
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Admin Contact Us"
-									echo '<li class="current"><a href="admin-contact-us.php">Admin Contact Us</a></li>';
+									echo '<li><a href="admin-contact-us.php">Admin Contact Us</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
 							}*/
 						?>	
-						<li class="current"><a href="admin-contact-us.php">Admin Contact Us</a></li>
+						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
                         <?php
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
@@ -100,111 +97,93 @@
 				</nav>
 			</div>
 
-			<!-- Main -->
 			<section class="wrapper style1">
 				<div class="container">
 					<div id="content">
 					<!-- Content -->
 						<article>
 							<header>
-								<h2>Solicitor list</h2>
+								<h2>Add Cave</h2>
 							</header>
-
-							<?php
-								// Include the database connection file
-								include 'db_info.php';
-
-								// Initialize messages
-								$message = '';
-								$messageClass = '';
-
-								// Check if the respond button is pressed
-								if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['respond'])) {
-									// Ensure that the solicitor_id is set in the $_POST data
-									if (isset($_POST['solicitor_id'])) {
-										$solicitorId = $_POST['solicitor_id'];
-
-										// Update the respond_date with the current date
-										$updateSql = "UPDATE solicitors SET respond_date = NOW() WHERE solicitor_id = $solicitorId";
-
-										if ($conn->query($updateSql) === TRUE) {
-											$message = 'Respond date updated successfully!';
-											$messageClass = 'success';
-										} else {
-											$message = 'Error updating respond date: ' . $conn->error;
-											$messageClass = 'error';
-										}
-									} else {
-										$message = 'Error: Solicitor ID not set in the POST data.';
-										$messageClass = 'error';
-									}
-								}
-
-								// Check if the filter button is pressed
-								if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['filter_non_responded'])) {
-									// Fetch only non-responded solicitors from the database
-									$sql = "SELECT * FROM solicitors WHERE respond_date IS NULL";
-								} else {
-									// Fetch all solicitors from the database
-									$sql = "SELECT * FROM solicitors";
-								}
-
-								$result = $conn->query($sql);
-
-								// Display the button only if respond_date is empty
-								echo '<form action="admin-contact-us.php" method="post">';
-								echo '<input type="submit" name="filter_non_responded" value="Show Non-Responded Solicitors">';
-								echo '</form>';
-
-								if ($result->num_rows > 0) {
-									// Display a table with solicitor information
-									echo '<table border="1">';
-									echo '<tr><th>Date</th><th>Name</th><th>Last Name</th><th>Email</th><th>Subject</th><th>Use</th><th>Comment</th><th>Respond Date</th><th>Action</th></tr>';
-
-									while ($row = $result->fetch_assoc()) {
-										echo '<tr>';
-										echo '<td>' . $row['date'] . '</td>';
-										echo '<td>' . $row['name'] . '</td>';
-										echo '<td>' . $row['last_name'] . '</td>';
-										echo '<td>' . $row['email'] . '</td>';
-										echo '<td>' . $row['subject'] . '</td>';
-										echo '<td>' . $row['use'] . '</td>';
-										echo '<td>' . $row['comment'] . '</td>';
-										echo '<td>' . ($row['respond_date'] ? $row['respond_date'] : 'Not Responded') . '</td>';
-
-										if (empty($row['respond_date'])) {
-											echo '<td>';
-											echo '<form action="contact_us_admin.php" method="post">';
-											echo '<input type="hidden" name="solicitor_id" value="' . $row['solicitor_id'] . '">';
-											echo '<input type="submit" name="respond" value="Respond">';
-											echo '</form>';
-											echo '</td>';
-										} else {
-											echo '<td></td>'; // Empty column if the button is not displayed
-										}
-
-										echo '</tr>';
-									}
-
-									echo '</table>';
-								} else {
-									echo '<p>No solicitors found.</p>';
-								}
-
-						
-								// Display the message
-								if (!empty($message)) {
-									echo '<p class="' . $messageClass . '">' . $message . '</p>';
-								}
-
-								// Close the database connection
-								$conn->close();
-							?>
+							<form id="caveForm">
+								<h3>Cave Name:</h3>
+								<input type="text" id="caveName" name="caveName">
+								<br>			
+								<h3>Town</h3>
+								<select id="town" name="town">
+									<option value="">Select a Town</option>
+									<option value="Arecibo">Arecibo</option>	
+									<option value="Camuy">Camuy</option>
+									<option value="Fajardo">Fajardo</option>
+									<option value="Town C">Ponce</option>
+								</select>
+								<br><br>
+								<h4>Biodiversity:</h4>
+								<fieldset>
+									<div><input type="checkbox" id="Guano"><label for="Guano">Guano</label></div>
+									<div><input type="checkbox" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
+									<div><input type="checkbox" id="Algae"><label for="Algae">Algae</label></div>
+									<div><input type="checkbox" id="Fungi"><label for="Fungi">Fungi</label></div>
+									<div><input type="checkbox" id="Liches"><label for="Liches">Liches</label></div>
+									<div><input type="checkbox" id="Plants"><label for="Plants">Plants</label></div>
+									<div><input type="checkbox" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
+									<div><input type="checkbox" id="Porifera"><label for="Porifera">Porifera</label></div>
+									<div><input type="checkbox" id="Cnidarians"><label for="Cnidarians">Cnidarians</label></div>
+									<div><input type="checkbox" id="Platyhelminthes"><label for="Platyhelminthes">Platyhelminthes</label></div>
+									<div><input type="checkbox" id="Nemertina"><label for="Nemertina">Nemertina</label></div>
+									<div><input type="checkbox" id="Gastrotricha"><label for="Gastrotricha">Gastrotricha</label></div>
+									<div><input type="checkbox" id="Kinorhyncha"><label for="Kinorhyncha">Kinorhyncha</label></div>
+									<div><input type="checkbox" id="Nematoda"><label for="Nematoda">Nematoda</label></div>
+									<div><input type="checkbox" id="Annelida"><label for="Annelida">Annelida</label></div>
+									<div><input type="checkbox" id="Mollusca"><label for="Mollusca">Mollusca</label></div>
+									<div><input type="checkbox" id="Brachiopoda"><label for="Brachiopoda">Brachiopoda</label></div>
+									<div><input type="checkbox" id="Bryozoa"><label for="Bryozoa">Bryozoa</label></div>
+									<div><input type="checkbox" id="Curstacea"><label for="Curstacea">Curstacea</label></div>
+									<div><input type="checkbox" id="Chelicerata"><label for="Chelicerata">Chelicerata</label></div>
+									<div><input type="checkbox" id="Onychophora"><label for="Onychophora">Onychophora</label></div>
+									<div><input type="checkbox" id="Tardigrada"><label for="Tardigrada">Tardigrada</label></div>
+									<div><input type="checkbox" id="Myriapoda"><label for="Myriapoda">Myriapoda</label></div>
+									<div><input type="checkbox" id="Insecta"><label for="Insecta">Insecta</label></div>
+									<div><input type="checkbox" id="Pisces"><label for="Pisces">Pisces</label></div>
+									<div><input type="checkbox" id="Amphibians"><label for="Amphibians">Amphibians</label></div>
+									<div><input type="checkbox" id="Reptilia"><label for="Reptilia">Reptilia</label></div>
+									<div><input type="checkbox" id="Aves"><label for="Aves">Aves</label></div>
+									<div><input type="checkbox" id="Mammalia"><label for="Mammalia">Mammalia</label></div>	
+								</fieldset>	
+								<br>
+								<h4>Exploration Date</h4>
+								<input type="date" id="exploration-date">
+								<br>
+								<br>
+								<fieldset>	
+									<div>
+										<h3>3D Model:</h3>
+										<div class="file-input-container">
+											<button class="file-input-button">Choose File</button>
+											<input type="file" id="caveSize" name="caveSize" class="file-input">
+											<span class="file-input-text">No File Chosen</span>
+										</div>
+									</div>
+									<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+									<div>
+										<h3>Download Link:</h3>
+										<div class="file-input-container">
+											<button class="file-input-button">Choose File</button>
+											<input type="file" id="caveSize" name="caveSize" class="file-input">
+											<span class="file-input-text">No File Chosen</span>
+										</div>
+									</div>
+								</fieldset>
+								<br>
+								<br>
+								<input type="submit" value="Create">
+							</form>
 						</article>
 					</div>
 				</div>
 			</section>
-
+			
+			<!-- Footer -->
 			<div id="footer">
 				<div class="container">
 					<div class="row">
@@ -255,14 +234,15 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/config.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/config.js"></script>
 
 	</body>
 </html>
