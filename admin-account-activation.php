@@ -117,7 +117,8 @@
                         </header>
 
                         <?php
-                            include 'admin-account-activation-backend.php';                          ?>
+                            include 'admin-account-activation-backend.php';                         
+                        ?>
                     </article>
                 </div>
             </div>
