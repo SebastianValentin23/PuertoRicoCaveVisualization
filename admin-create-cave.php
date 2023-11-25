@@ -123,7 +123,9 @@
 										$lines = file($filePath);
 										// Loop through each line and display in a separate paragraph
 										foreach ($lines as $line) {
-											echo "<option value='" . htmlspecialchars($line) . "'>" . htmlspecialchars($line) . "</option>";
+											$alphabeticOnly = preg_replace("/[^a-zA-Z]/", "", $line);
+
+											echo "<option value='" .htmlspecialchars($alphabeticOnly) . "'>" .htmlspecialchars($alphabeticOnly) . "</option>";
 										}
 									} else {
 										echo '<p>Error: File not found</p>';
@@ -237,7 +239,5 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src="assets/js/config.js"></script>
-
 	</body>
 </html>

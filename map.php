@@ -25,7 +25,7 @@
             <div class="modal-content">
                 <span id="close" class="close">&times;</span>
                 <h2>Caves in <a id="town-name">TOWN</a>:</h2>
-                <p id="cave-list">cave1</p>
+                <div id="cave-list">cave1</div>
             </div>
         </div>
 
