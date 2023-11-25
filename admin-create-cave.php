@@ -1,6 +1,6 @@
 <?php
-	session_start();
-?>
+    session_start();
+?> 
 <!DOCTYPE HTML>
 <!--
 	Arcana by HTML5 UP
@@ -9,96 +9,26 @@
 -->
 <html>
 	<head>
-		<title>Login Creation</title>
+		<title>Cave Creation</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<style>
-        .error {
-            color: red;
-        }
-
-        .success {
-            color: green;
-        }
-    	</style>
+        
 	</head>
-	<body class="is-preload">
-		
-	<?php
-// Include the database connection file
-include 'db_info.php';
-
-// Initialize messages
-$message = '';
-$messageClass = '';
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $missingFields = array();
-
-    // Check if all form fields are filled
-    if (empty($_POST['email'])) {
-        $missingFields[] = 'Email';
-    }
-    if (empty($_POST['password'])) {
-        $missingFields[] = 'Password';
-    }
-    if (empty($_POST['name'])) {
-        $missingFields[] = 'Name';
-    }
-    if (empty($_POST['lastname'])) {
-        $missingFields[] = 'Last Name';
-    }
-    if (empty($_POST['authorization'])) {
-        $missingFields[] = 'Authorization';
-    }
-
-    if (!empty($missingFields)) {
-        $message = 'Please fill in all required fields: ' . implode(', ', $missingFields);
-        $messageClass = 'error';
-    } else {
-        // Retrieve form data
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $name = $_POST["name"];
-        $lastname = $_POST["lastname"];
-        $authorization = $_POST["authorization"];
-
-        // Hash the password before storing it in the database
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // Insert data into the 'admins' table
-        $stmt = $conn->prepare("INSERT INTO admins (email, password, name, lastname, authorization) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $email, $hashedPassword, $name, $lastname, $authorization);
-        $stmt->execute();
-
-        if ($stmt->affected_rows > 0) {
-            $message = 'New record created successfully';
-            $messageClass = 'success';
-        } else {
-            $message = 'Error: ' . $stmt->error;
-            $messageClass = 'error';
-        }
-
-        $stmt->close();
-    }
-}
-
-// Close the database connection
-$conn->close();
-?>
-    
+	<h1>
+        <?php require './db-requests/create-backend.php';?> 
+    </h1>
+    <body class="is-preload">
 		<div id="page-wrapper">
 			<div id="header">
 			<nav id="nav">
 					<ul>
-						<li ><a href="admin-create-cave.php">Cave Creation</a></li>
+						<li class="current"><a href="admin-create-cave.php">Cave Creation</a></li>
                         <?php
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as master or admin, display "Admin Caves"
-									echo '<li><a href="admin-caves.php">Admin Caves</a></li>';
+									echo '<li ><a href="admin-caves.php">Admin Caves</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher") {
 									// User is logged in as publisher, do not display "Admin Caves"
 								}
@@ -131,13 +61,13 @@ $conn->close();
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Create Account"
-									echo '<li class="current"><a href="admin-login-creation.php">Create Account</a></li>';
+									echo '<li><a href="admin-login-creation.php">Create Account</a></li>';
 								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Create Account"
 								}
 							}*/
 						?>
-						<li class="current"><a href="admin-login-creation.php">Create Account</a></li>
+						<li><a href="admin-login-creation.php">Create Account</a></li>
                         <?php
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
@@ -171,46 +101,84 @@ $conn->close();
 				</nav>
 			</div>
 
-			<!-- Main -->
 			<section class="wrapper style1">
 				<div class="container">
 					<div id="content">
 					<!-- Content -->
 						<article>
 							<header>
-								<h2>Create New Account</h2>
-							</header><?php if ($message): ?>
-								<p class="<?= $messageClass; ?>"><?php echo $message; ?></p>
-							<?php endif; ?>
+								<h2>Add Cave</h2>
+							</header>
+							<form action="admin-create-cave.php" method="post" enctype="multipart/form-data">
+								<h3>Cave Name:</h3>
+								<input type="text" name="name" required>
+								<br>			
+								
+								<h3>Town</h3>
+								<select name="town" required>
+									<option value=''>Select Town</option>
+									<?php $filePath = 'Towns.txt';
+									if (file_exists($filePath)) {
+										// Read the file into an array, where each element is a line
+										$lines = file($filePath);
+										// Loop through each line and display in a separate paragraph
+										foreach ($lines as $line) {
+											echo "<option value='" . htmlspecialchars($line) . "'>" . htmlspecialchars($line) . "</option>";
+										}
+									} else {
+										echo '<p>Error: File not found</p>';
+									} ?>
+								</select>
+								
+								<br><br>
+								<h4>Biodiversity:</h4>
+								<fieldset>
+									<div><input type="checkbox" name="biodiversity[]" value="Guano" id="Guano"><label for="Guano">Guano</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Bacteria" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Algae" id="Algae"><label for="Algae">Algae</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Fungi" id="Fungi"><label for="Fungi">Fungi</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Liches" id="Liches"><label for="Liches">Liches</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Plants" id="Plants"><label for="Plants">Plants</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Protozoans" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Porifera" id="Porifera"><label for="Porifera">Porifera</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Cnidarians" id="Cnidarians"><label for="Cnidarians">Cnidarians</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Platyhelminthes" id="Platyhelminthes"><label for="Platyhelminthes">Platyhelminthes</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Nemertina" id="Nemertina"><label for="Nemertina">Nemertina</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Gastrotricha" id="Gastrotricha"><label for="Gastrotricha">Gastrotricha</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Kinorhyncha" id="Kinorhyncha"><label for="Kinorhyncha">Kinorhyncha</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Nematoda" id="Nematoda"><label for="Nematoda">Nematoda</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Annelida" id="Annelida"><label for="Annelida">Annelida</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Mollusca" id="Mollusca"><label for="Mollusca">Mollusca</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Brachiopoda" id="Brachiopoda"><label for="Brachiopoda">Brachiopoda</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Bryozoa" id="Bryozoa"><label for="Bryozoa">Bryozoa</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Curstacea" id="Curstacea"><label for="Curstacea">Curstacea</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Chelicerata" id="Chelicerata"><label for="Chelicerata">Chelicerata</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Onychophora" id="Onychophora"><label for="Onychophora">Onychophora</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Tardigrada" id="Tardigrada"><label for="Tardigrada">Tardigrada</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Myriapoda" id="Myriapoda"><label for="Myriapoda">Myriapoda</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Insecta" id="Insecta"><label for="Insecta">Insecta</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Pisces" id="Pisces"><label for="Pisces">Pisces</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Amphibians" id="Amphibians"><label for="Amphibians">Amphibians</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Reptilia" id="Reptilia"><label for="Reptilia">Reptilia</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Aves" id="Aves"><label for="Aves">Aves</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Mammalia" id="Mammalia"><label for="Mammalia">Mammalia</label></div>	
+								</fieldset>	
+							
+                                <h3>Choose a .ply file for the 3D model and download:</h3>
+                                <input type="file" name="model" id="model" required>
+                                <br><br>
+                                <h3>Choose a .laz file for download:</h3>
+                                <input type="file" name="download" id="download" required>
 
-							<form action="admin-login-creation.php" method="post">
-								<label for="email">Email:</label>
-								<input type="email" id="email" name="email" required><br>
-
-								<label for="password">Password:</label>
-								<input type="password" id="password" name="password" required><br>
-
-								<label for="name">Name:</label>
-								<input type="text" id="name" name="name" required><br>
-
-								<label for="lastname">Last Name:</label>
-								<input type="text" id="lastname" name="lastname" required><br>
-
-								<label for="authorization">Authorization:</label>
-								<select id="authorization" name="authorization" required>
-									<option value="" disabled selected>Select Authorization</option>
-									<option value="master">Master</option>
-									<option value="admin">Admin</option>
-									<option value="publisher">Publisher</option>
-								</select><br>
-
-								<input type="submit" value="Submit">
+                                <br><br>
+								<input type="submit" value="Create">
 							</form>
 						</article>
 					</div>
 				</div>
 			</section>
-
+			
+			<!-- Footer -->
 			<div id="footer">
 				<div class="container">
 					<div class="row">
@@ -261,14 +229,15 @@ $conn->close();
 				</div>
 			</div>
 		</div>
+		
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/config.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/config.js"></script>
 
 	</body>
 </html>

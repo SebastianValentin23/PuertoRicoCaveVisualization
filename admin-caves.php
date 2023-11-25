@@ -21,7 +21,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="admin-cave-creation.php">Cave Creation</a></li>
+						<li><a href="admin-create-cave.php">Cave Creation</a></li>
                         <?php
                         /*if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {

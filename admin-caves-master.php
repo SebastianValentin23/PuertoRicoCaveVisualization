@@ -18,7 +18,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="cave-creation.html">Cave Creation</a></li>	
+						<li><a href="admin-create-cave.php">Cave Creation</a></li>	
 						<li><a href="admin-caves.php">Admin Caves</a></li>
 						<li class="current"><a href="admin-caves-master.php">Master Caves</a></li>
 						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>

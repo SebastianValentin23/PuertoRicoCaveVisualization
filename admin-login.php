@@ -56,7 +56,7 @@ mysqli_close($conn);
 			<div id="header">
 				<nav id="nav">
 					<ul>
-						<li><a href="cave-creation.html">Cave Creation</a></li>	
+						<li><a href="admin-create-cave.php">Cave Creation</a></li>	
 						<li><a href="admin-caves.html">Admin Caves</a></li>
 						<li><a href="admin-caves-master.html">Master Caves</a></li>
 						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
