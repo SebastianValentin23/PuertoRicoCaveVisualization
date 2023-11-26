@@ -107,6 +107,9 @@
 					<!-- Content -->
 						<article>
 							<header>
+								<?php if ($message): ?>
+									<p class="<?= $messageClass; ?>"><?php echo $message; ?></p>
+								<?php endif; ?>	
 								<h2>Add Cave</h2>
 							</header>
 							<form action="admin-create-cave.php" method="post" enctype="multipart/form-data">
