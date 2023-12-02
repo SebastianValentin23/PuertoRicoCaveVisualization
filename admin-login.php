@@ -56,13 +56,7 @@ mysqli_close($conn);
 			<div id="header">
 				<nav id="nav">
 					<ul>
-						<li><a href="admin-create-cave.php">Cave Creation</a></li>	
-						<li><a href="admin-caves.html">Admin Caves</a></li>
-						<li><a href="admin-caves-master.html">Master Caves</a></li>
-						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
-						<li><a href="admin-login-creation.php">Create Account</a></li>
 						<li  class="current"><a href="admin-login.php">Login</a></li>
-						<li><a href="admin-account-activation.php">Accounts</a></li>					
 						<li><a href="index.html">User</a></li>
 					</ul>
 				</nav>
@@ -101,27 +95,6 @@ mysqli_close($conn);
 								<li><a href="#">Angel Acosta</a></li>
 								<li><a href="#">CaveGeoMap</a></li>
 							</ul>
-						</section>
-						<section class="col-6 col-12-narrower">
-							<h3>Get In Touch</h3>
-							<form>
-								<div class="row gtr-50">
-									<div class="col-6 col-12-mobilep">
-										<input type="text" name="name" id="name" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-mobilep">
-										<input type="email" name="email" id="email" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" class="button alt" value="Send Message" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
 						</section>
 					</div>
 				</div>

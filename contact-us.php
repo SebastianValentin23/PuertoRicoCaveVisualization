@@ -9,7 +9,7 @@
 		<title>Login Creation</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css"/>
 		<style>
         .error {
             color: red;
@@ -32,7 +32,7 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li><a href="search-cave.html">Caves</a></li>
+						<li><a href="search-cave.php">Caves</a></li>
 						<li><a href="map.php">Map</a></li>
 						<li class="current"><a href="contact-us.php">Contact Us</a></li>
 						<li id="loginLink"><a href="admin-login.php">Admin</a></li>

@@ -19,7 +19,7 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li class="current"><a href="search-cave.html">Caves</a></li>
+						<li class="current"><a href="search-cave.php">Caves</a></li>
 						<li><a href="map.php">Map</a></li>
 						<li><a href="contact-us.php">Contact Us</a></li>
 						<li id="loginLink"><a href="admin-login.php">Admin</a></li>
@@ -28,28 +28,33 @@
 			</div>	
 
 			<!-- Content -->
-			<div id="content">
-				<article>
-					<header>
-						<h2><?php echo $cave["name"] ?></h2>
-						<p><?php echo "Town: " . $cave["town"] ?></p>
-					</header>
-					<div class="model-viewer">
-						<script type="module" src="/model.js"></script>
-					</div>
-					<header>
-						<a href="/model-viewer.php?model=<?php echo $cave["model_link"];?>" target=”_blank”>Model</a>
-						<h3>Biodiversity:</h3>
+			<section class="wrapper style1">
+				<div class="container">
+					<div id="content">
+						<header>
+							<h2><?php echo $cave["name"] ?></h2>
+							<p><?php echo "Town: " . $cave["town"] ?></p>
+						</header>
+						
+						<header>
+							Click to preview <a href="/model-viewer.php?model=<?php echo $cave["model_link"];?>" target=”_blank”>Model</a> in a seperate window
+						</header>	
 						<br>
-						<p><!--ADD PHP CODE TO GRAB THE BIODIVERSITY --></p>
-					</header>											
-					<h3>Download Links:</h3>
+						<h3>Biodiversity:</h3>
+						<p><?php if ($bio->num_rows > 0) { ; 
+							while ($row = $bio->fetch_assoc()) {
+								echo $row["type"] . ", ";
+							}
+						} ?></p>
+						
+						<h3>Download Links:</h3>
 						<ul class="links">
 							<li><a href="cuevas/<?php echo $cave["download_link"];?>" download>LAZ format</a></li>
 							<li><a href="cuevas/<?php echo $cave["model_link"];?>" download>PLY format</a></li>
 						</ul>
-				</article>
-			</div>
+					</div>
+				</div>	
+			</section>
 			
 
 			<div id="footer">
@@ -62,27 +67,6 @@
 								<li><a href="#">Angel Acosta</a></li>
 								<li><a href="#">CaveGeoMap</a></li>
 							</ul>
-						</section>
-						<section class="col-6 col-12-narrower">
-							<h3>Get In Touch</h3>
-							<form>
-								<div class="row gtr-50">
-									<div class="col-6 col-12-mobilep">
-										<input type="text" name="name" id="name" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-mobilep">
-										<input type="email" name="email" id="email" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" class="button alt" value="Send Message" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
 						</section>
 					</div>
 				</div>
@@ -104,12 +88,12 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>

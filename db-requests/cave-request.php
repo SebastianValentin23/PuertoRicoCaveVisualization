@@ -16,6 +16,9 @@ $sql = "SELECT * FROM cave WHERE cave_id =" . $_GET["id"];
 $result = $conn->query($sql);
 $cave = $result->fetch_assoc();
 
+$sql = "SELECT * FROM biodiversity WHERE cave_id =" .$_GET["id"];
+$bio = $conn->query($sql);
+
 $conn->close();
 
 
