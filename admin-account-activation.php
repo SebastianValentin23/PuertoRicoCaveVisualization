@@ -24,67 +24,44 @@
 </head>
 <body class="is-preload">
 
-    <div id="page-wrapper">
-        <div id="header">
-        <nav id="nav">
+<div id="page-wrapper">
+			<div id="header">
+			<nav id="nav">
 					<ul>
-						<li ><a href="admin-create-cave.php">Cave Creation</a></li>
+						<li><a href="admin-create-cave.php">Cave Creation</a></li>
                         <?php
-                        /*if (isset($_SESSION["authorization"])) {
+                        	if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
-									// User is logged in as master or admin, display "Admin Caves"
-									echo '<li><a href="admin-caves.php">Admin Caves</a></li>';
+									// User is logged in as master or admin, display "Caves"
+									echo '<li><a href="admin-caves-master.php">Caves</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher") {
-									// User is logged in as publisher, do not display "Admin Caves"
-								}
-							}*/
-						?>
-						<li ><a href="admin-caves.php">Admin Caves</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master") {
-									// User is logged in as master, display "Master Caves"
-									echo '<li><a href="admin-caves-master.html">Master Caves</a></li>';
-								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Master Caves"
-								}
-							}*/
-						?>
-						<li><a href="admin-caves-master.php">Master Caves</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master") {
-									// User is logged in as master, display "Admin Contact Us"
+								}   
+							}
+							if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as master or admin, display "Admin Contact Us"
 									echo '<li><a href="admin-contact-us.php">Admin Contact Us</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
-							}*/
-						?>	
-						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
+							}
+							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Create Account"
 									echo '<li><a href="admin-login-creation.php">Create Account</a></li>';
 								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Create Account"
 								}
-							}*/
-						?>
-						<li><a href="admin-login-creation.php">Create Account</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
+							}
+							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Accounts"
 									echo '<li class="current"><a href="admin-account-activation.php">Accounts</a></li>';
 								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Accounts"
 								}
-							}*/
-						?>
-						<li class="current"><a href="admin-account-activation.php">Accounts</a></li>
-						<?php
+							}	
 							if (isset($_SESSION["email"])) {
 								// User is logged in, display user's name
 								echo '<li><a href="#">' . $_SESSION["name"] . '</a></li>';
@@ -92,9 +69,6 @@
 								// User is not logged in, display login link
 								echo '<li><a href="admin-login.php">Login</a></li>';
 							}
-							
-						?>					
-						<?php
                         if (isset($_SESSION["email"])) {
                             // User is logged in, display User (logout) link
                             echo '<li><a href="admin-logout.php">User</a></li>';
@@ -104,7 +78,7 @@
                          ?>
 					</ul>
 				</nav>
-        </div>
+			</div>
 
         <!-- Main -->
         <section class="wrapper style1">

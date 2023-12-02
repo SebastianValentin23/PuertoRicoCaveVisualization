@@ -19,67 +19,44 @@
         <?php require './db-requests/create-backend.php';?> 
     </h1>
     <body class="is-preload">
-		<div id="page-wrapper">
+	<div id="page-wrapper">
 			<div id="header">
 			<nav id="nav">
 					<ul>
 						<li class="current"><a href="admin-create-cave.php">Cave Creation</a></li>
                         <?php
-                        /*if (isset($_SESSION["authorization"])) {
+                        	if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
-									// User is logged in as master or admin, display "Admin Caves"
-									echo '<li ><a href="admin-caves.php">Admin Caves</a></li>';
+									// User is logged in as master or admin, display "Caves"
+									echo '<li><a href="admin-caves-master.php">Caves</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher") {
-									// User is logged in as publisher, do not display "Admin Caves"
-								}
-							}*/
-						?>
-						<li ><a href="admin-caves.php">Admin Caves</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master") {
-									// User is logged in as master, display "Master Caves"
-									echo '<li><a href="admin-caves-master.html">Master Caves</a></li>';
-								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Master Caves"
 								}
-							}*/
-						?>
-						<li><a href="admin-caves-master.php">Master Caves</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master") {
-									// User is logged in as master, display "Admin Contact Us"
+							}
+							if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as master or admin, display "Admin Contact Us"
 									echo '<li><a href="admin-contact-us.php">Admin Contact Us</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
-							}*/
-						?>	
-						<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
+							}
+							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Create Account"
 									echo '<li><a href="admin-login-creation.php">Create Account</a></li>';
 								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Create Account"
 								}
-							}*/
-						?>
-						<li><a href="admin-login-creation.php">Create Account</a></li>
-                        <?php
-                        /*if (isset($_SESSION["authorization"])) {
+							}
+							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Accounts"
 									echo '<li><a href="admin-account-activation.php">Accounts</a></li>';
 								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Accounts"
 								}
-							}*/
-						?>
-						<li><a href="admin-account-activation.php">Accounts</a></li>
-						<?php
+							}	
 							if (isset($_SESSION["email"])) {
 								// User is logged in, display user's name
 								echo '<li><a href="#">' . $_SESSION["name"] . '</a></li>';
@@ -87,9 +64,6 @@
 								// User is not logged in, display login link
 								echo '<li><a href="admin-login.php">Login</a></li>';
 							}
-							
-						?>					
-						<?php
                         if (isset($_SESSION["email"])) {
                             // User is logged in, display User (logout) link
                             echo '<li><a href="admin-logout.php">User</a></li>';
@@ -118,22 +92,23 @@
 								<br>			
 								
 								<h3>Town</h3>
-								<select name="town" required>
-									<option value=''>Select Town</option>
-									<?php $filePath = 'Towns.txt';
-									if (file_exists($filePath)) {
-										// Read the file into an array, where each element is a line
-										$lines = file($filePath);
-										// Loop through each line and display in a separate paragraph
-										foreach ($lines as $line) {
-											$alphabeticOnly = preg_replace("/[^a-zA-Z]/", "", $line);
+								<select id="town" name="town">
+											<option value=''>Select Town</option>
+												<?php $filePath = 'Towns.txt';
+												if (file_exists($filePath)) {
+											// Read the file into an array, where each element is a line
+    											$lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-											echo "<option value='" .htmlspecialchars($alphabeticOnly) . "'>" .htmlspecialchars($alphabeticOnly) . "</option>";
-										}
-									} else {
-										echo '<p>Error: File not found</p>';
-									} ?>
-								</select>
+											// Loop through each line and display in a separate paragraph
+												foreach ($lines as $line) {
+												$alphabeticOnly = preg_replace("/[^a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]/u", "", $line);
+
+												echo "<option value='" .htmlspecialchars($alphabeticOnly) . "'>" .htmlspecialchars($alphabeticOnly) . "</option>";
+												}
+											} else {
+												echo '<p>Error: File not found</p>';
+											} ?>
+										</select>
 								
 								<br><br>
 								<h4>Biodiversity:</h4>
@@ -142,7 +117,7 @@
 									<div><input type="checkbox" name="biodiversity[]" value="Bacteria" id="Bacteria"><label for="Bacteria">Bacteria</label></div>
 									<div><input type="checkbox" name="biodiversity[]" value="Algae" id="Algae"><label for="Algae">Algae</label></div>
 									<div><input type="checkbox" name="biodiversity[]" value="Fungi" id="Fungi"><label for="Fungi">Fungi</label></div>
-									<div><input type="checkbox" name="biodiversity[]" value="Liches" id="Liches"><label for="Liches">Liches</label></div>
+									<div><input type="checkbox" name="biodiversity[]" value="Lichens" id="Lichens"><label for="Lichens">Lichens</label></div>
 									<div><input type="checkbox" name="biodiversity[]" value="Plants" id="Plants"><label for="Plants">Plants</label></div>
 									<div><input type="checkbox" name="biodiversity[]" value="Protozoans" id="Protozoans"><label for="Protozoans">Protozoans</label></div>
 									<div><input type="checkbox" name="biodiversity[]" value="Porifera" id="Porifera"><label for="Porifera">Porifera</label></div>
@@ -176,6 +151,7 @@
                                 <input type="file" name="download" id="download" required>
 
                                 <br><br>
+								<input type="hidden" name="cave_id" value="<?php echo htmlspecialchars($cave_id); ?>">
 								<input type="submit" value="Create">
 							</form>
 						</article>

@@ -1,5 +1,6 @@
-	<!--Change Liches to Lichens in admin-create-cave-->
-	
+<?php
+    session_start();
+	?> 
 	<!DOCTYPE HTML>
 	<!--
 		Arcana by HTML5 UP
@@ -14,39 +15,61 @@
 			<link rel="stylesheet" href="assets/css/main.css" />
 		</head>
 		<body class="is-preload">
-			<div id="page-wrapper">
-				<!-- Header -->
-				<div id="header">
-					<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="admin-create-cave.php">Cave Creation</a></li>	
-							<li><a href="admin-caves.php">Admin Caves</a></li>
-							<li class="current"><a href="admin-caves-master.php">Master Caves</a></li>
-							<li><a href="admin-contact-us.php">Admin Contact Us</a></li>
-							<li><a href="admin-login-creation.php">Create Account</a></li>
-							<li><a href="admin-account-activation.php">Accounts</a></li>
-							<?php
-								session_start();
-								if (isset($_SESSION["email"])) {
-									// User is logged in, display user's name
-									echo '<li><a href="#">' . $_SESSION["name"] . '</a></li>';
-								} else {
-									// User is not logged in, display login link
-									echo '<li><a href="admin-login.php">Login</a></li>';
+		<div id="page-wrapper">
+			<div id="header">
+			<nav id="nav">
+					<ul>
+						<li><a href="admin-create-cave.php">Cave Creation</a></li>
+                        <?php
+                        	if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as master or admin, display "Caves"
+									echo '<li class="current"><a href="admin-caves-master.php">Caves</a></li>';
+								} elseif ($_SESSION["authorization"] == "publisher") {
+									// User is logged in as admin or publisher, do not display "Master Caves"
 								}
-							?>					
-							<?php
-							if (isset($_SESSION["email"])) {
-								// User is logged in, display User (logout) link
-								echo '<li><a href="admin-logout.php">User</a></li>';
-							} else {
-								// User is not logged in, display nothing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 							}
-							?>
-						</ul>
-					</nav>
-				</div>
+							if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as master or admin, display "Admin Contact Us"
+									echo '<li><a href="admin-contact-us.php">Admin Contact Us</a></li>';
+								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as admin or publisher, do not display "Admin Contact Us"
+								}
+							}
+							if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master") {
+									// User is logged in as master, display "Create Account"
+									echo '<li><a href="admin-login-creation.php">Create Account</a></li>';
+								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
+									// User is logged in as admin or publisher, do not display "Create Account"
+								}
+							}
+							if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master") {
+									// User is logged in as master, display "Accounts"
+									echo '<li><a href="admin-account-activation.php">Accounts</a></li>';
+								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
+									// User is logged in as admin or publisher, do not display "Accounts"
+								}
+							}
+							if (isset($_SESSION["email"])) {
+								// User is logged in, display user's name
+								echo '<li><a href="#">' . $_SESSION["name"] . '</a></li>';
+							} else {
+								// User is not logged in, display login link
+								echo '<li><a href="admin-login.php">Login</a></li>';
+							}
+                        if (isset($_SESSION["email"])) {
+                            // User is logged in, display User (logout) link
+                            echo '<li><a href="admin-logout.php">User</a></li>';
+                        } else {
+                            // User is not logged in, display nothing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                        }
+                         ?>
+					</ul>
+				</nav>
+			</div>
 				<!-- Main -->
 				<section class="wrapper style1">
 					<div class="container">
@@ -139,7 +162,7 @@
 											
 											<?php
 												include 'db_info.php';
-
+												$caveIdentify = isset($_POST['cave_id']) ? $_POST['cave_id'] : null;
 												// Handle form submission
 												if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 													$caveName = $_POST['caveName'];
@@ -147,10 +170,12 @@
 													$biodiversity = isset($_POST['biodiversity']) ? $_POST['biodiversity'] : [];
 
 													// Build the SQL query based on the selected filters
-													$sql = "SELECT cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
+													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
 															LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id
 															WHERE cave.active = 1";
-													
+													if (!empty($caveIdentify)) {
+														$sql .= " AND cave.cave_id LIKE '%$caveIdentify%'";
+													}
 													if (!empty($caveName)) {
 														$sql .= " AND cave.name LIKE '%$caveName%'";
 													}
@@ -170,43 +195,110 @@
 													// Display the filtered results
 													if ($result->num_rows > 0) {
 														echo '<tbody id="caveTableBody">';
-														
+												
+														// Create an array to store biodiversity values for each cave
+														$biodiversityValuesArray = [];
+												
 														while ($row = $result->fetch_assoc()) {
-															echo "<tr>
-																	<td><a href='edit-cave-master.php?name=" . $row["name"] . "'>" . $row["name"] . "</a></td>
-																	<td>" . $row["town"] . "</td>
-																	<td>" . $row["type"] . "</td>
-																	<td>" . $row["model_link"] . "</td>
-																</tr>";
+															$caveName = $row["name"];
+															$town = $row["town"];
+															$modelLink = $row["model_link"];
+															$biodiversityValues = $row["type"];
+												
+															// Check if the cave name already exists in the array
+															if (array_key_exists($caveName, $biodiversityValuesArray)) {
+																// If it exists, append the biodiversity values to the existing data
+																$biodiversityValuesArray[$caveName]["biodiversity"][] = $biodiversityValues;
+															} else {
+																// If it doesn't exist, add a new entry to the array
+																$biodiversityValuesArray[$caveName] = [
+																	"town" => $town,
+																	"biodiversity" => [$biodiversityValues],
+																	"model_link" => $modelLink,
+																];
+															}
 														}
+												
+														foreach ($biodiversityValuesArray as $caveName => $caveData) {
+															$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
+												
+															echo "<tr>
+																	<td><a href='edit-cave.html?id=" . $caveIdentify . "'>" . $caveName . "</a></td>
+																	<td>" . $caveData["town"] . "</td>
+																	<td>" . $biodiversityValues . "</td>
+																	<td>" . $caveData["model_link"] . "</td>
+																  </tr>";
+														}
+												
 														echo '</tbody>';
 													} else {
 														echo "<tbody id='caveTableBody'><tr><td colspan='4'>No results found</td></tr></tbody>";
 													}
 												} else {
 													// Display all caves when the page loads initially
-													$sql = "SELECT cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
+													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
 													LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id";
 												$result = $conn->query($sql);
 
 												// Display the results
 												if ($result->num_rows > 0) {
-												echo '<tbody id="caveTableBody">';
-
-												while ($row = $result->fetch_assoc()) {
-													echo "<tr>
-															<td><a href='edit-cave-master.php?name=" . $row["name"] . "'>" . $row["name"] . "</a></td>
-															<td>" . $row["town"] . "</td>
-															<td>" . $row["type"] . "</td>
-															<td>" . $row["model_link"] . "</td>
-														</tr>";
+													echo '<tbody id="caveTableBody">';
+											
+													// Create an array to store biodiversity values for each cave
+													$biodiversityValuesArray = [];
+											
+													while ($row = $result->fetch_assoc()) {
+														$caveName = $row["name"];
+														$town = $row["town"];
+														$modelLink = $row["model_link"];
+														$biodiversityValues = $row["type"];
+											
+														// Check if the cave name already exists in the array
+															if (array_key_exists($caveName, $biodiversityValuesArray)) {
+																// If it exists, append the biodiversity values to the existing data
+																$biodiversityValuesArray[$caveName]["biodiversity"][] = $biodiversityValues;
+															} else {
+																// If it doesn't exist, add a new entry to the array
+																$biodiversityValuesArray[$caveName] = [
+																	"town" => $town,
+																	"biodiversity" => [$biodiversityValues],
+																	"model_link" => $modelLink,
+																];
+															}
+														}
+												
+														foreach ($biodiversityValuesArray as $caveName => $caveData) {
+															$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
+												
+															echo "<tr>
+																	<td><a href='edit-cave.html?id=" . $caveIdentify . "'>" . $caveName . "</a></td>
+																	<td>" . $caveData["town"] . "</td>
+																	<td>" . $biodiversityValues . "</td>
+																	<td>" . $caveData["model_link"] . "</td>
+																</tr>";
+														}
+												
+														echo '</tbody>';
+													} else {
+														echo "<tbody id='caveTableBody'><tr><td colspan='4'>No results found</td></tr></tbody>";
+													}
 												}
-												echo '</tbody>';
-												} else {
-												echo "<tbody id='caveTableBody'><tr><td colspan='4'>No results found</td></tr></tbody>";
+												function getBiodiversityValues($caveId) {
+													global $conn;
+												
+													$biodiversityValues = [];
+												
+													$biodiversitySql = "SELECT type FROM biodiversity WHERE cave_id = $caveId";
+													$biodiversityResult = $conn->query($biodiversitySql);
+												
+													if ($biodiversityResult->num_rows > 0) {
+														while ($biodiversityRow = $biodiversityResult->fetch_assoc()) {
+															$biodiversityValues[] = $biodiversityRow["type"];
+														}
+													}
+												
+													return implode(", ", $biodiversityValues);
 												}
-												}
-
 												$conn->close();
 												?>
 											</tbody>
