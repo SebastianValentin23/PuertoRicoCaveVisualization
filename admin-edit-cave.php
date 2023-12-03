@@ -18,20 +18,21 @@
 			<div id="header">
 				<nav id="nav">
 					<ul>
-					<li><a href="admin-create-cave.php">Cave Creation</a></li>
-                        <?php
+						<li><a href="admin-create-cave.php">Create Cave</a></li>
+                        <li class="current"><a href="admin-caves-master.php">Cave List</a></li>
+						<?php
                         	if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
-									// User is logged in as master or admin, display "Caves"
-									echo '<li class="current"><a href="admin-caves-master.php">Caves</a></li>';
-								} elseif ($_SESSION["authorization"] == "publisher") {
-									// User is logged in as admin or publisher, do not display "Master Caves"
+								if ($_SESSION["authorization"] == "master") {
+									// User is logged in as master or admin, display "Admin Contact Us"
+									echo '<li><a href="admin-contact-us.php">Contact Us Logs</a></li>';
+								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
 							}
 							if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
-									// User is logged in as master or admin, display "Admin Contact Us"
-									echo '<li><a href="admin-contact-us.php">Admin Contact Us</a></li>';
+								if ($_SESSION["authorization"] == "master") {
+									// User is logged in as master, display "Logs"
+									echo '<li><a href="admin-logs.php">Admin Activity Logs</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
@@ -65,7 +66,7 @@
                         } else {
                             // User is not logged in, display nothing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                         }
-                         ?>
+                        ?>
 					</ul>
 				</nav>
 			</div>
@@ -176,27 +177,6 @@
 								<li><a href="#">Angel Acosta</a></li>
 								<li><a href="#">CaveGeoMap</a></li>
 							</ul>
-						</section>
-						<section class="col-6 col-12-narrower">
-							<h3>Get In Touch</h3>
-							<form>
-								<div class="row gtr-50">
-									<div class="col-6 col-12-mobilep">
-										<input type="text" name="name" id="name" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-mobilep">
-										<input type="email" name="email" id="email" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" class="button alt" value="Send Message" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
 						</section>
 					</div>
 				</div>

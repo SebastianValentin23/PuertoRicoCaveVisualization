@@ -19,20 +19,21 @@
 			<div id="header">
 			<nav id="nav">
 					<ul>
-						<li><a href="admin-create-cave.php">Cave Creation</a></li>
-                        <?php
+						<li><a href="admin-create-cave.php">Create Cave</a></li>
+                        <li class="current"><a href="admin-caves-master.php">Cave List</a></li>
+						<?php
                         	if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
-									// User is logged in as master or admin, display "Caves"
-									echo '<li class="current"><a href="admin-caves-master.php">Caves</a></li>';
-								} elseif ($_SESSION["authorization"] == "publisher") {
-									// User is logged in as admin or publisher, do not display "Master Caves"
+								if ($_SESSION["authorization"] == "master") {
+									// User is logged in as master or admin, display "Admin Contact Us"
+									echo '<li><a href="admin-contact-us.php">Contact Us Logs</a></li>';
+								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
 							}
 							if (isset($_SESSION["authorization"])) {
-								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
-									// User is logged in as master or admin, display "Admin Contact Us"
-									echo '<li><a href="admin-contact-us.php">Admin Contact Us</a></li>';
+								if ($_SESSION["authorization"] == "master") {
+									// User is logged in as master, display "Logs"
+									echo '<li><a href="admin-logs.php">Admin Activity Logs</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
@@ -66,7 +67,7 @@
                         } else {
                             // User is not logged in, display nothing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                         }
-                         ?>
+                        ?>
 					</ul>
 				</nav>
 			</div>
@@ -148,7 +149,9 @@
 									<article>
 										<header>
 											<h2>Caves</h2>
-											<p>Click on a cave to edit its information</p>
+											<?php if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") { 
+												echo "<p>Click on a cave to edit its information</p>";
+											} ?>
 										</header>
 										<table id="caveTable">
 											<thead>
@@ -160,7 +163,13 @@
 											</tr>
 											</thead>
 											
-											<?php
+											<?php $canEdit = FALSE;
+
+												if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") { 
+													$canEdit = TRUE;
+												} 	
+												
+												
 												include 'db_info.php';
 												$caveIdentify = isset($_POST['cave_id']) ? $_POST['cave_id'] : null;
 												// Handle form submission
@@ -172,7 +181,7 @@
 													// Build the SQL query based on the selected filters
 													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.active FROM cave
 															LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id
-															WHERE cave.active = 1 OR cave.active = 0";
+															WHERE 1 = 1";
 													if (!empty($caveIdentify)) {
 														$sql .= " AND cave.cave_id LIKE '%$caveIdentify%'";
 													}
@@ -223,12 +232,19 @@
 														foreach ($biodiversityValuesArray as $caveName => $caveData) {
 															$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
 												
-															echo "<tr>
-																	<td><a href='admin-edit-cave.php?id=" . $caveId . "'>" . $caveName . "</a></td>
-																	<td>" . $caveData["town"] . "</td>
-																	<td>" . $biodiversityValues . "</td>
-																	<td>" . $caveData["active"] . "</td>
-																  </tr>";
+															echo "<tr><td>";
+															if ($canEdit) {
+																echo "<a href='admin-edit-cave.php?id=" . $caveId . "'>";
+															}	
+															echo $caveName;
+															if ($canEdit) {
+																echo "</a>";
+															}
+															echo "</td>
+																<td>" . $caveData["town"] . "</td>
+																<td>" . $biodiversityValues . "</td>
+																<td>" . $caveData["active"] . "</td>
+																</tr>";
 														}
 												
 														echo '</tbody>';
@@ -272,12 +288,15 @@
 														foreach ($biodiversityValuesArray as $caveName => $caveData) {
 															$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
 												
-															echo "<tr>
-																	<td><a href='admin-edit-cave.php?id=" . $caveId . "'>" . $caveName . "</a></td>
-																	<td>" . $caveData["town"] . "</td>
-																	<td>" . $biodiversityValues . "</td>
-																	<td>" . $caveData["model_link"] . "</td>
-																</tr>";
+															echo "<tr><td>";
+															if ($canEdit) {
+																echo "<a href='admin-edit-cave.php?id=" . $caveId . "'>";
+															}	
+															echo $caveName; 
+															if ($canEdit) {
+																echo "</a>";
+															}
+															echo "</td><td>" . $caveData["town"] . "</td><td>" . $biodiversityValues . "</td><td>" . $active . "</td></tr>";
 														}
 												
 														echo '</tbody>';
@@ -324,27 +343,6 @@
 									<li><a href="#">Angel Acosta</a></li>
 									<li><a href="#">CaveGeoMap</a></li>
 								</ul>
-							</section>
-							<section class="col-6 col-12-narrower">
-								<h3>Get In Touch</h3>
-								<form>
-									<div class="row gtr-50">
-										<div class="col-6 col-12-mobilep">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="col-6 col-12-mobilep">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="col-12">
-											<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-										</div>
-										<div class="col-12">
-											<ul class="actions">
-												<li><input type="submit" class="button alt" value="Send Message" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
 							</section>
 						</div>
 					</div>

@@ -28,7 +28,7 @@
 			<div id="header">
 			<nav id="nav">
 					<ul>
-                        <li><a href="admin-create-cave.php">Create Cave</a></li>
+                    <li><a href="admin-create-cave.php">Create Cave</a></li>
                         <li><a href="admin-caves-master.php">Cave List</a></li>
 						<?php
                         	if (isset($_SESSION["authorization"])) {
@@ -42,7 +42,7 @@
 							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Logs"
-									echo '<li><a href="admin-logs.php">Admin Activity Logs</a></li>';
+									echo '<li class="current"><a href="admin-logs.php">Admin Activity Logs</a></li>';
 								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
 									// User is logged in as admin or publisher, do not display "Admin Contact Us"
 								}
@@ -58,7 +58,7 @@
 							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Accounts"
-									echo '<li class="current"><a href="admin-account-activation.php">Accounts</a></li>';
+									echo '<li><a href="admin-account-activation.php">Accounts</a></li>';
 								} elseif ($_SESSION["authorization"] == "admin" || $_SESSION["authorization"] == "publisher") {
 									// User is logged in as admin or publisher, do not display "Accounts"
 								}
@@ -88,11 +88,11 @@
                     <!-- Content -->
                     <article>
                         <header>
-                            <h2>Admin Account Activation</h2>
+                            <h2>Admin Logs</h2>
                         </header>
 
                         <?php
-                            include './db-requests/admin-account-activation-backend.php';                         
+                            include './db-requests/admin-logs-backend.php';                         
                         ?>
                     </article>
                 </div>
