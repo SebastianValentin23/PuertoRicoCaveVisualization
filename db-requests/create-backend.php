@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Creating the log
     $date = date("y/m/d-H:i");
     $admin_id = $_SESSION["admin_id"];
-    $sql = "INSERT INTO logs (admin_id, cave_id, date, action) VALUES ('" . $_SESSION["admin_id"] . "', '" . $current_id['current_id'] . "', '" . $date . "', 'add')";
+    $sql = "INSERT INTO logs (admin_id, admin_name, cave_id, cave_name, date, action) VALUES ('" . $_SESSION["admin_id"] . "', '" .$_SESSION["name"] . "', '" . $current_id['current_id'] . "', '" . $name . "', '" . $date . "', 'add')";
     if ($conn->query($sql) === TRUE) {
         //nothing
     } else {

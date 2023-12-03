@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $messageClass = 'error';
     }
 
-    // Delete all entries for a specific cave_id and type
+    // Delete all entries
     $delete_sql = "DELETE FROM biodiversity WHERE cave_id = " . $cave["cave_id"];
     $conn->query($delete_sql);
     if ($conn->query($sql) === TRUE) {
@@ -119,7 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //Creating the log
     $date = date("y/m/d-H:i");
     $admin_id = $_SESSION["admin_id"];
-    $sql = "INSERT INTO logs (admin_id, cave_id, date, action) VALUES ('" . $_SESSION["admin_id"] . "', '" . $cave['cave_id'] . "', '" . $date . "', 'edit')";
+    $sql = "INSERT INTO logs (admin_id, admin_name, cave_id, cave_name, date, action) VALUES ('" . $_SESSION["admin_id"] . "', '" .$_SESSION["name"] . "', '" . $cave['cave_id'] . "', '" . $name . "', '" . $date . "', 'edit')";
     if ($conn->query($sql) === TRUE) {
         //nothing
     } else {

@@ -145,7 +145,7 @@
 									<div><input type="checkbox" name="biodiversity[]" value="Aves" id="Aves" <?php checkBio("Aves") ?>><label for="Aves">Aves</label></div>
 									<div><input type="checkbox" name="biodiversity[]" value="Mammalia" id="Mammalia" <?php checkBio("Mammalia") ?>><label for="Mammalia">Mammalia</label></div>	
 								</fieldset>
-									<br>
+								<br>
 										
 								<h3>If you wish to replace the current model, please choose a .ply file for the 3D model:</h3>
                                 <input type="file" name="model" id="model">
@@ -161,6 +161,15 @@
 								<input type="hidden" name="cave_id" value="<?php echo htmlspecialchars($cave_id); ?>">
 								<input type="submit" value="Update">
 							</form>
+							<br>
+							<br>
+
+							<?php if ($_SESSION["authorization"] == "master") { ?>
+    							<form method="post" action="admin-delete.php?id=<?php echo $_GET["id"]; ?>&name=<?php echo $cave["name"]; ?>">
+        							<input type="submit" value="Delete">
+    							</form>
+							<?php } ?>
+							
 							</article>
 						</div>
 					</div>
