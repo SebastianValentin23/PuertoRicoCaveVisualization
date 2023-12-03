@@ -57,7 +57,7 @@
     if ($result->num_rows > 0) {
         // Display a table with admin information
         echo '<table border="1">';
-        echo '<tr><th>Name</th><th>Last Name</th><th>Email</th><th>Authorization</th><th>Active</th><th>Action</th></tr>';
+        echo '<tr><th>Name</th><th>Last Name</th><th>Email</th><th>Authorization</th><th>Active</th><th>Action</th><th>Deletion</th></tr>';
 
         while ($row = $result->fetch_assoc()) {
             echo '<tr>';
