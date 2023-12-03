@@ -193,7 +193,7 @@
 											} else {
 												// Display all caves when the page loads initially
 												$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
-												LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id";
+												LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id WHERE cave.active = 1";
 											$result = $conn->query($sql);
 
 											// Display the results

@@ -156,7 +156,7 @@
 												<th>Cave Name</th>
 												<th>Town</th>
 												<th>Biodiversity</th>
-												<th>Cave Size (3D Model)</th>
+												<th>Active</th>
 											</tr>
 											</thead>
 											
@@ -170,9 +170,9 @@
 													$biodiversity = isset($_POST['biodiversity']) ? $_POST['biodiversity'] : [];
 
 													// Build the SQL query based on the selected filters
-													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
+													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.active FROM cave
 															LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id
-															WHERE cave.active = 1";
+															WHERE cave.active = 1 OR cave.active = 0";
 													if (!empty($caveIdentify)) {
 														$sql .= " AND cave.cave_id LIKE '%$caveIdentify%'";
 													}
@@ -200,9 +200,10 @@
 														$biodiversityValuesArray = [];
 												
 														while ($row = $result->fetch_assoc()) {
+															$caveId = $row["cave_id"];
 															$caveName = $row["name"];
 															$town = $row["town"];
-															$modelLink = $row["model_link"];
+															$active = $row["active"];
 															$biodiversityValues = $row["type"];
 												
 															// Check if the cave name already exists in the array
@@ -214,7 +215,7 @@
 																$biodiversityValuesArray[$caveName] = [
 																	"town" => $town,
 																	"biodiversity" => [$biodiversityValues],
-																	"model_link" => $modelLink,
+																	"active" => $active,
 																];
 															}
 														}
@@ -223,10 +224,10 @@
 															$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
 												
 															echo "<tr>
-																	<td><a href='edit-cave.html?id=" . $caveIdentify . "'>" . $caveName . "</a></td>
+																	<td><a href='admin-edit-cave.php?id=" . $caveId . "'>" . $caveName . "</a></td>
 																	<td>" . $caveData["town"] . "</td>
 																	<td>" . $biodiversityValues . "</td>
-																	<td>" . $caveData["model_link"] . "</td>
+																	<td>" . $caveData["active"] . "</td>
 																  </tr>";
 														}
 												
@@ -236,7 +237,7 @@
 													}
 												} else {
 													// Display all caves when the page loads initially
-													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.model_link FROM cave
+													$sql = "SELECT cave.cave_id, cave.name, cave.town, biodiversity.type, cave.active FROM cave
 													LEFT JOIN biodiversity ON cave.cave_id = biodiversity.cave_id";
 												$result = $conn->query($sql);
 
@@ -248,9 +249,10 @@
 													$biodiversityValuesArray = [];
 											
 													while ($row = $result->fetch_assoc()) {
+														$caveId = $row["cave_id"];
 														$caveName = $row["name"];
 														$town = $row["town"];
-														$modelLink = $row["model_link"];
+														$active = $row["active"];
 														$biodiversityValues = $row["type"];
 											
 														// Check if the cave name already exists in the array
@@ -262,7 +264,7 @@
 																$biodiversityValuesArray[$caveName] = [
 																	"town" => $town,
 																	"biodiversity" => [$biodiversityValues],
-																	"model_link" => $modelLink,
+																	"model_link" => $active,
 																];
 															}
 														}
@@ -271,7 +273,7 @@
 															$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
 												
 															echo "<tr>
-																	<td><a href='edit-cave.html?id=" . $caveIdentify . "'>" . $caveName . "</a></td>
+																	<td><a href='admin-edit-cave.php?id=" . $caveId . "'>" . $caveName . "</a></td>
 																	<td>" . $caveData["town"] . "</td>
 																	<td>" . $biodiversityValues . "</td>
 																	<td>" . $caveData["model_link"] . "</td>

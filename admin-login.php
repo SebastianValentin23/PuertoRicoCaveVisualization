@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["name"] = $row["name"];
                 $_SESSION["lastname"] = $row["lastname"];
                 $_SESSION["authorization"] = $row["authorization"];
-                header("Location: admin-caves.php");
+                header("Location: admin-caves-master.php");
                 exit();
             } else {
                 $error_message = "Incorrect password";

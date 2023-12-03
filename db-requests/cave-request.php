@@ -21,5 +21,4 @@ $bio = $conn->query($sql);
 
 $conn->close();
 
-
 ?>
