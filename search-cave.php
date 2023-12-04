@@ -111,7 +111,7 @@
 												<th>Cave Name</th>
 												<th>Town</th>
 												<th>Biodiversity</th>
-												<th>Cave Size (3D Model)</th>
+												<th>3D Model</th>
 											</tr>
 										</thead>
 										
@@ -168,6 +168,7 @@
 														} else {
 															// If it doesn't exist, add a new entry to the array
 															$biodiversityValuesArray[$caveName] = [
+																"id" => $caveId,
 																"town" => $town,
 																"biodiversity" => [$biodiversityValues],
 																"model_link" => $modelLink,
@@ -179,7 +180,7 @@
 														$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
 											
 														echo "<tr>
-																<td><a href='cave.php?id=" . $caveId . "'>" . $caveName . "</a></td>
+																<td><a href='cave.php?id=" . $caveData["id"] . "'>" . $caveName . "</a></td>
 																<td>" . $caveData["town"] . "</td>
 																<td>" . $biodiversityValues . "</td>
 																<td>" . $caveData["model_link"] . "</td>
@@ -217,6 +218,7 @@
 														} else {
 															// If it doesn't exist, add a new entry to the array
 															$biodiversityValuesArray[$caveName] = [
+																"id" => $caveId,
 																"town" => $town,
 																"biodiversity" => [$biodiversityValues],
 																"model_link" => $modelLink,
@@ -228,7 +230,7 @@
 														$biodiversityValues = implode(', ', array_unique($caveData["biodiversity"]));
 											
 														echo "<tr>
-																<td><a href='cave.php?id=" . $caveId . "'>" . $caveName . "</a></td>
+																<td><a href='cave.php?id=" . $caveData["id"] . "'>" . $caveName . "</a></td>
 																<td>" . $caveData["town"] . "</td>
 																<td>" . $biodiversityValues . "</td>
 																<td>" . $caveData["model_link"] . "</td>

@@ -48,8 +48,8 @@
 						
 						<h3>Download Links:</h3>
 						<ul class="links">
-							<li><a href="cuevas/<?php echo $cave["download_link"];?>" download>LAZ format</a></li>
-							<li><a href="cuevas/<?php echo $cave["model_link"];?>" download>PLY format</a></li>
+							<li><a href="download.php?link=<?php echo $cave["download_link"];?>&id=<?php echo $cave["cave_id"];?>&name=<?php echo $cave["name"];?>" _blank>LAZ format</a></li>
+							<li><a href="download.php?link=<?php echo $cave["model_link"];?>&id=<?php echo $cave["cave_id"];?>&name=<?php echo $cave["name"];?>" _blank>PLY format</a></li>
 						</ul>
 					</div>
 				</div>	

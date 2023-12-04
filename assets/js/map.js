@@ -2,13 +2,17 @@ function start() {
     
     var towns = [];
     towns.push({
-        name: "Morovis",
-        x: 700,
-        y: 140
+        name: "Arecibo",
+        x: 440,
+        y: 80
     }, {
         name: "Utuado",
         x: 470,
         y: 200
+    }, {
+        name: "Morovis",
+        x: 700,
+        y: 140
     }); 
 
     const modal = document.getElementById("modal");
@@ -65,13 +69,9 @@ function start() {
                     modal.style.display = "block";
                     townName.innerHTML = towns[i].name;
                     //go through the list of caves and show each one that corresponds to this town. 
-                    
                     for(let j=0; j < caves.length; j++){
-                        console.log(caves[j].town + towns[i].name)
                         if(caves[j].town == towns[i].name) {
-                            console.log(cavesNames);
                             cavesNames += "<a href='cave.php?id=" + caves[j].cave_id + "'>" + caves[j].name + "</a><br>";
-                            console.log(cavesNames);
                         }
                     }
                     caveList.innerHTML = cavesNames;

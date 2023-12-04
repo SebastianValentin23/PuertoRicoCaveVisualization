@@ -31,6 +31,14 @@
 								}
 							}
 							if (isset($_SESSION["authorization"])) {
+								if ($_SESSION["authorization"] == "master" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as master or admin, display "Stats"
+									echo '<li><a href="admin-stats.php">Stats</a></li>';
+								} elseif ($_SESSION["authorization"] == "publisher" || $_SESSION["authorization"] == "admin") {
+									// User is logged in as admin or publisher, do not display "Admin Contact Us"
+								}
+							}
+							if (isset($_SESSION["authorization"])) {
 								if ($_SESSION["authorization"] == "master") {
 									// User is logged in as master, display "Logs"
 									echo '<li><a href="admin-logs.php">Admin Activity Logs</a></li>';
@@ -222,6 +230,7 @@
 															} else {
 																// If it doesn't exist, add a new entry to the array
 																$biodiversityValuesArray[$caveName] = [
+																	"id" => $caveId,
 																	"town" => $town,
 																	"biodiversity" => [$biodiversityValues],
 																	"active" => $active,
@@ -234,7 +243,7 @@
 												
 															echo "<tr><td>";
 															if ($canEdit) {
-																echo "<a href='admin-edit-cave.php?id=" . $caveId . "'>";
+																echo "<a href='admin-edit-cave.php?id=" . $caveData["id"] . "'>";
 															}	
 															echo $caveName;
 															if ($canEdit) {
@@ -278,6 +287,7 @@
 															} else {
 																// If it doesn't exist, add a new entry to the array
 																$biodiversityValuesArray[$caveName] = [
+																	"id" => $caveId,
 																	"town" => $town,
 																	"biodiversity" => [$biodiversityValues],
 																	"model_link" => $active,
@@ -290,7 +300,7 @@
 												
 															echo "<tr><td>";
 															if ($canEdit) {
-																echo "<a href='admin-edit-cave.php?id=" . $caveId . "'>";
+																echo "<a href='admin-edit-cave.php?id=" . $caveData["id"] . "'>";
 															}	
 															echo $caveName; 
 															if ($canEdit) {
